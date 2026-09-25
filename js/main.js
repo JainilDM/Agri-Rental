@@ -146,12 +146,71 @@ function initActionHandlers() {
   // Find Machinery & List Machine Buttons - let normal link navigation proceed to farmer.html and owner.html
   // (Listeners removed so browser navigates smoothly to the target pages)
 
-  // Take Action Buttons
-  document.querySelectorAll('.btn-take-action').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      showToast('Take Action clicked. Connect to registration or featured campaigns.');
-    });
+  // Login / Sign Up Action Buttons (Desktop & Mobile)
+  const loginActionBtns = [
+    document.getElementById('headerActionBtn'),
+    document.getElementById('mobileActionBtn')
+  ].filter(Boolean);
+
+  function openLoginSignUpModal(e) {
+    if (e) e.preventDefault();
+    openModal(
+      'Login / Sign Up to Agri-Rental',
+      `
+      <div style="padding: 0.5rem 0;">
+        <p style="color: #4b5563; font-size: 0.95rem; margin-bottom: 1.5rem; text-align: center;">
+          Choose your account portal to sign in or create an account for agricultural machinery rentals.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <!-- Farmer Portal Card -->
+          <a href="farmer.html" style="display: flex; flex-direction: column; align-items: center; padding: 1.25rem; border: 2px solid #e5e7eb; border-radius: 8px; text-decoration: none; text-align: center; background: #fafafa; transition: border-color 0.2s, transform 0.2s;">
+            <span style="font-size: 2.25rem; margin-bottom: 0.5rem;">🌾</span>
+            <strong style="color: #111827; font-size: 1.05rem; margin-bottom: 0.25rem;">Farmer Portal</strong>
+            <span style="color: #6b7280; font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.3;">Rent tractors, tillers, and harvesters for your farm</span>
+            <span style="margin-top: auto; font-size: 0.85rem; font-weight: 700; color: #b45309; text-transform: uppercase;">Go to Farmer Portal &rarr;</span>
+          </a>
+
+          <!-- Owner Portal Card -->
+          <a href="owner.html" style="display: flex; flex-direction: column; align-items: center; padding: 1.25rem; border: 2px solid #e5e7eb; border-radius: 8px; text-decoration: none; text-align: center; background: #fafafa; transition: border-color 0.2s, transform 0.2s;">
+            <span style="font-size: 2.25rem; margin-bottom: 0.5rem;">🚜</span>
+            <strong style="color: #111827; font-size: 1.05rem; margin-bottom: 0.25rem;">Machine Owner</strong>
+            <span style="color: #6b7280; font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.3;">List your equipment and manage rental requests</span>
+            <span style="margin-top: auto; font-size: 0.85rem; font-weight: 700; color: #b45309; text-transform: uppercase;">Go to Owner Portal &rarr;</span>
+          </a>
+        </div>
+
+        <!-- Quick Sign In Helper -->
+        <div style="background: #f9fafb; border-radius: 8px; padding: 1rem 1.25rem; border: 1px solid #e5e7eb;">
+          <h4 style="color: #1f2937; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">Quick Sign In (Demo)</h4>
+          <form id="modalQuickLoginForm" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <input type="text" id="modalLoginId" placeholder="Mobile number or Email" required style="flex: 1; min-width: 180px; padding: 0.6rem 0.85rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.875rem;">
+            <button type="submit" class="btn-take-action" style="padding: 0.6rem 1.25rem; font-size: 0.8rem; cursor: pointer;">SIGN IN</button>
+          </form>
+          <div id="modalLoginFeedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; color: #16a34a; font-weight: 600;"></div>
+        </div>
+      </div>
+      `
+    );
+
+    const modalForm = document.getElementById('modalQuickLoginForm');
+    if (modalForm) {
+      modalForm.addEventListener('submit', (ev) => {
+        ev.preventDefault();
+        const idInput = document.getElementById('modalLoginId');
+        const feedback = document.getElementById('modalLoginFeedback');
+        if (idInput && feedback && idInput.value.trim()) {
+          const userVal = idInput.value.trim();
+          feedback.textContent = `✓ Signed in as ${userVal} (Active Demo Session)`;
+          feedback.style.display = 'block';
+          showToast(`Signed in successfully as ${userVal}`);
+        }
+      });
+    }
+  }
+
+  loginActionBtns.forEach(btn => {
+    btn.addEventListener('click', openLoginSignUpModal);
   });
 
   // Cart Button

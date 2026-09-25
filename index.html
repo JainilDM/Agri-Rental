@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agricultural-Rental Machinery | Somaiya Vidyavihar</title>
-  <meta name="description" content="A web platform connecting farmers needing agricultural machinery with owners wanting to rent out equipment. Developed by KJSIT-IT Department.">
+  <meta name="description"
+    content="A web platform connecting farmers needing agricultural machinery with owners wanting to rent out equipment. Developed by KJSIT-IT Department.">
   <meta name="keywords" content="Agricultural Rental, Farm Machinery, Tractors, Harvesters, Farm Equipment, KJSIT">
 
   <!-- Google Fonts: Inter & Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
 
   <!-- Stylesheets with Cache-Busting -->
   <link rel="stylesheet" href="css/variables.css?v=3.0">
   <link rel="stylesheet" href="css/components.css?v=3.0">
   <link rel="stylesheet" href="css/style.css?v=3.0">
 </head>
+
 <body>
 
   <!-- ==========================================================================
@@ -25,8 +30,9 @@
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <!-- Institution Brand Logo -->
-      <a href="#" class="brand-logo-link" aria-label="Somaiya Vidyavihar Homepage">
-        <img src="assets/images/somaiya-logo.png" alt="Somaiya Vidyavihar - K. J. Somaiya Institute of Technology Logo" class="brand-logo">
+      <a href="index.html" class="brand-logo-link" aria-label="Somaiya Vidyavihar Homepage">
+        <img src="assets/images/somaiya-logo.png" alt="Somaiya Vidyavihar - K. J. Somaiya Institute of Technology Logo"
+          class="brand-logo">
       </a>
 
       <!-- Desktop Navigation Menu -->
@@ -35,10 +41,10 @@
           <ul class="nav-menu">
             <li><a href="#hero" class="nav-link active" id="navHome">Home</a></li>
             <li><a href="#howItWorks" class="nav-link" id="navHowItWorks">How It Works</a></li>
-            <li><a href="#machinery" class="nav-link" id="navMachinery">Machinery</a></li>
-            <li><a href="#about" class="nav-link" id="navAbout">About Us</a></li>
+            <li><a href="farmer.html" class="nav-link" id="navFindMachinery">Find Machinery</a></li>
+            <li><a href="owner.html" class="nav-link" id="navListMachine">List Machine</a></li>
+            <li><a href="about.html" class="nav-link" id="navAbout">About Us</a></li>
             <li><a href="#contact" class="nav-link" id="navContact">Contact Us</a></li>
-            <li><a href="#login" class="nav-link" id="navLogin">Login</a></li>
           </ul>
         </nav>
 
@@ -46,21 +52,27 @@
         <div class="header-actions">
           <div class="social-links" aria-label="Social Media Links">
             <!-- Twitter / X -->
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Twitter">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
+              aria-label="Twitter">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
             <!-- LinkedIn -->
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
+              aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </a>
             <!-- Facebook -->
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
+              aria-label="Facebook">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.356 5 15.627 5H18V0h-3.808C10.595 0 9 1.582 9 4.615V8z"/>
+                <path
+                  d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.356 5 15.627 5H18V0h-3.808C10.595 0 9 1.582 9 4.615V8z" />
               </svg>
             </a>
           </div>
@@ -68,18 +80,20 @@
           <!-- Shopping Cart / Rental Request Counter -->
           <a href="#cart" class="cart-btn" id="cartBtn" aria-label="View Cart (0 items)">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+              <path
+                d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
             </svg>
             <span>0</span>
           </a>
 
           <!-- Primary Yellow Call to Action -->
-          <button type="button" class="btn-take-action" id="headerActionBtn">TAKE ACTION</button>
+          <button type="button" class="btn-take-action" id="headerActionBtn">LOGIN / SIGN UP</button>
         </div>
       </div>
 
       <!-- Mobile Hamburger Button -->
-      <button type="button" class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle mobile menu" aria-expanded="false">
+      <button type="button" class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle mobile menu"
+        aria-expanded="false">
         <span class="menu-toggle-bar"></span>
         <span class="menu-toggle-bar"></span>
         <span class="menu-toggle-bar"></span>
@@ -91,14 +105,13 @@
       <ul class="mobile-nav-list">
         <li><a href="#hero" class="mobile-nav-link">Home</a></li>
         <li><a href="#howItWorks" class="mobile-nav-link">How It Works</a></li>
-        <li><a href="#machinery" class="mobile-nav-link">Machinery</a></li>
-        <li><a href="#about" class="mobile-nav-link">About Us</a></li>
+        <li><a href="farmer.html" class="mobile-nav-link">Find Machinery</a></li>
+        <li><a href="owner.html" class="mobile-nav-link">List Machine</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About Us</a></li>
         <li><a href="#contact" class="mobile-nav-link">Contact Us</a></li>
-        <li><a href="#login" class="mobile-nav-link">Login</a></li>
-        <li><a href="#register" class="mobile-nav-link">Register</a></li>
       </ul>
       <div class="mobile-nav-actions">
-        <button type="button" class="btn-take-action" style="width: 100%;">TAKE ACTION</button>
+        <button type="button" class="btn-take-action" id="mobileActionBtn" style="width: 100%;">LOGIN / SIGN UP</button>
       </div>
     </div>
   </header>
@@ -117,7 +130,8 @@
 
         <!-- Subtitle Pill Card -->
         <div class="hero-subcard">
-          <p>A web platform that connects farmers needing agricultural machinery with owners who want to rent out their equipment.</p>
+          <p>A web platform that connects farmers needing agricultural machinery with owners who want to rent out their
+            equipment.</p>
         </div>
 
         <!-- Hero Dual Action Buttons -->
@@ -144,7 +158,7 @@
 
         <!-- 2-Column Workflow Grid -->
         <div class="roles-grid">
-          
+
           <!-- Column 1: For Farmers -->
           <article class="role-column" aria-labelledby="roleFarmers">
             <div class="role-header">
@@ -185,10 +199,12 @@
             </ol>
 
             <!-- Demo Video Link Box for Renting -->
-            <a href="#demo-video-renting" class="demo-video-box" id="demoVideoRentBtn" role="button" aria-label="Open Demo Video for Renting a Machine">
+            <a href="#demo-video-renting" class="demo-video-box" id="demoVideoRentBtn" role="button"
+              aria-label="Open Demo Video for Renting a Machine">
               <span class="demo-video-text">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
                 </svg>
                 DEMO VIDEO FOR RENTING A MACHINE (TO BE LINKED TO A DEMO VIDEO)
               </span>
@@ -235,16 +251,146 @@
             </ol>
 
             <!-- Demo Video Link Box for Registering -->
-            <a href="#demo-video-registering" class="demo-video-box" id="demoVideoRegisterBtn" role="button" aria-label="Open Demo Video for Registering a Machine">
+            <a href="#demo-video-registering" class="demo-video-box" id="demoVideoRegisterBtn" role="button"
+              aria-label="Open Demo Video for Registering a Machine">
               <span class="demo-video-text">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
                 </svg>
                 DEMO VIDEO FOR REGISTERING A MACHINE (TO BE LINKED TO A DEMO VIDEO)
               </span>
             </a>
           </article>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         "CONTACT US" Section
+         ========================================================================== -->
+    <section class="contact-section" id="contact" aria-labelledby="contactTitle">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+          <h2 class="section-title-yellow" id="contactTitle">CONTACT US</h2>
+          <p class="contact-subtitle">
+            Get in touch with the Agricultural-Rental Machinery project team at K. J. Somaiya Institute of Technology
+            (KJSIT), Mumbai.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Column 1: Institution & Department Contact Details -->
+          <div class="contact-card">
+            <div class="contact-card-header">
+              <span class="contact-card-icon" aria-hidden="true">🏛️</span>
+              <div>
+                <h3 class="contact-card-title">Department &amp; Campus Info</h3>
+                <p class="contact-card-desc">Academic &amp; Research Engineering Center</p>
+              </div>
+            </div>
+
+            <div class="contact-info-list">
+              <div class="contact-info-item">
+                <span class="contact-info-icon" aria-hidden="true">📍</span>
+                <div>
+                  <strong>Campus Address:</strong>
+                  <p>K. J. Somaiya Institute of Technology, Somaiya Ayurvihar Complex, Eastern Express Highway, near
+                    Everard Nagar, Sion East, Mumbai, Maharashtra 400022.</p>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <span class="contact-info-icon" aria-hidden="true">💻</span>
+                <div>
+                  <strong>Academic Department:</strong>
+                  <p>Department of Information Technology (IT), KJSIT</p>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <span class="contact-info-icon" aria-hidden="true">🌐</span>
+                <div>
+                  <strong>Official Institution Portals:</strong>
+                  <div class="official-links-group">
+                    <a href="https://kjsit.somaiya.edu/" target="_blank" rel="noopener noreferrer"
+                      class="btn-official-link">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+                      </svg>
+                      Visit Official KJSIT Website &rarr;
+                    </a>
+                    <a href="https://kjsit.somaiya.edu/en/programme/b-tech-information-technology" target="_blank"
+                      rel="noopener noreferrer" class="btn-official-link">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+                      </svg>
+                      KJSIT Information Technology Dept. &rarr;
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Team Member Email Placeholders -->
+          <div class="contact-card">
+            <div class="contact-card-header">
+              <span class="contact-card-icon" aria-hidden="true">✉️</span>
+              <div>
+                <h3 class="contact-card-title">Project Team Contacts</h3>
+                <p class="contact-card-desc">Somaiya Institutional Email Directory (Placeholders)</p>
+              </div>
+            </div>
+
+            <div class="team-emails-notice">
+              <span class="notice-icon" aria-hidden="true">ℹ️</span>
+              <span>Clearly marked temporary email placeholders. Real Somaiya email IDs will be updated soon.</span>
+            </div>
+
+            <div class="team-emails-list">
+              <div class="team-email-row">
+                <div class="team-email-meta">
+                  <span class="team-email-role">Lead Developer (Frontend &amp; UI)</span>
+                  <span class="team-email-id">student1@somaiya.edu</span>
+                </div>
+                <span class="email-tag-placeholder">Placeholder</span>
+              </div>
+
+              <div class="team-email-row">
+                <div class="team-email-meta">
+                  <span class="team-email-role">Full-Stack &amp; Client Logic</span>
+                  <span class="team-email-id">student2@somaiya.edu</span>
+                </div>
+                <span class="email-tag-placeholder">Placeholder</span>
+              </div>
+
+              <div class="team-email-row">
+                <div class="team-email-meta">
+                  <span class="team-email-role">Backend &amp; Database Architecture</span>
+                  <span class="team-email-id">student3@somaiya.edu</span>
+                </div>
+                <span class="email-tag-placeholder">Placeholder</span>
+              </div>
+
+              <div class="team-email-row">
+                <div class="team-email-meta">
+                  <span class="team-email-role">Faculty Project Mentor / Advisor</span>
+                  <span class="team-email-id">mentor@somaiya.edu</span>
+                </div>
+                <span class="email-tag-placeholder">Placeholder</span>
+              </div>
+            </div>
+
+            <div class="contact-card-footer-cta">
+              <p>For academic inquiries, field testing partnerships, or agricultural platform questions, connect with
+                our Somaiya project team.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -259,18 +405,17 @@
       <div class="footer-col-about">
         <h4 class="footer-brand-title">AGRICULTURAL–RENTAL MACHINERY</h4>
         <p class="footer-address">
-          K. J. Somaiya Institute of Technology is located at Somaiya Ayurvihar Complex, Eastern Express Highway, near Everard Nagar, Sion East, Mumbai, Maharashtra 400022.
+          K. J. Somaiya Institute of Technology is located at Somaiya Ayurvihar Complex, Eastern Express Highway, near
+          Everard Nagar, Sion East, Mumbai, Maharashtra 400022.
         </p>
         <p class="footer-credits">Made by KJSIT-IT DEPARTMENT.</p>
       </div>
 
-      <!-- Our Work Links -->
+      <!-- About Us Links -->
       <div class="footer-col-work">
-        <h4 class="footer-col-title">Our Work</h4>
+        <h4 class="footer-col-title">About Us</h4>
         <ul class="footer-nav-list">
-          <li><a href="#about" class="footer-link">About</a></li>
-          <li><a href="#initiatives" class="footer-link">Initiatives</a></li>
-          <li><a href="#take-action" class="footer-link">Take Action</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
         </ul>
       </div>
 
@@ -278,9 +423,12 @@
       <div class="footer-col-follow">
         <h4 class="footer-col-title">Follow</h4>
         <ul class="footer-nav-list">
-          <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-link">Twitter</a></li>
-          <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
-          <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-link">Facebook</a></li>
+          <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-link">Twitter</a>
+          </li>
+          <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+          </li>
+          <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-link">Facebook</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -299,7 +447,8 @@
         <!-- Injected via JavaScript -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-take-action" id="modalOkBtn" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Close</button>
+        <button type="button" class="btn-take-action" id="modalOkBtn"
+          style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Close</button>
       </div>
     </div>
   </div>
@@ -310,4 +459,5 @@
   <!-- Main Application Script -->
   <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

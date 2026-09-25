@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Agricultural-Rental Machinery | Somaiya Vidyavihar</title>
+  <meta name="description" content="Learn about Agricultural-Rental Machinery, our mission to make modern farm equipment accessible to farmers, how the rental system works, and the engineering team behind the project.">
+  <meta name="keywords" content="About Agricultural Rental, Farm Mechanization, KJSIT IT Department, Somaiya Vidyavihar, Tractor Rental System">
+
+  <!-- Google Fonts: Inter & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css?v=3.0">
+  <link rel="stylesheet" href="css/components.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/forms.css?v=1.0">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Header & Navigation Bar (Consistent with Site Layout)
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <!-- Institution Brand Logo -->
+      <a href="index.html" class="brand-logo-link" aria-label="Somaiya Vidyavihar Homepage">
+        <img src="assets/images/somaiya-logo.png" alt="Somaiya Vidyavihar - K. J. Somaiya Institute of Technology Logo" class="brand-logo">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <div class="nav-desktop">
+        <nav class="header-nav" aria-label="Primary Navigation">
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link" id="navHome">Home</a></li>
+            <li><a href="index.html#howItWorks" class="nav-link" id="navHowItWorks">How It Works</a></li>
+            <li><a href="farmer.html" class="nav-link" id="navFindMachinery">Find Machinery</a></li>
+            <li><a href="owner.html" class="nav-link" id="navListMachine">List Machine</a></li>
+            <li><a href="about.html" class="nav-link active" id="navAbout">About Us</a></li>
+            <li><a href="index.html#contact" class="nav-link" id="navContact">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <!-- Social Icons, Cart & Action CTA -->
+        <div class="header-actions">
+          <div class="social-links" aria-label="Social Media Links">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.356 5 15.627 5H18V0h-3.808C10.595 0 9 1.582 9 4.615V8z"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Shopping Cart / Rental Request Counter -->
+          <a href="#cart" class="cart-btn" id="cartBtn" aria-label="View Cart (0 items)">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+            <span>0</span>
+          </a>
+
+          <!-- Primary Yellow Call to Action -->
+          <button type="button" class="btn-take-action" id="headerActionBtn">LOGIN / SIGN UP</button>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button type="button" class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+      </button>
+    </div>
+
+    <!-- Responsive Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="index.html#howItWorks" class="mobile-nav-link">How It Works</a></li>
+        <li><a href="farmer.html" class="mobile-nav-link">Find Machinery</a></li>
+        <li><a href="owner.html" class="mobile-nav-link">List Machine</a></li>
+        <li><a href="about.html" class="mobile-nav-link active">About Us</a></li>
+        <li><a href="index.html#contact" class="mobile-nav-link">Contact Us</a></li>
+      </ul>
+      <div class="mobile-nav-actions">
+        <button type="button" class="btn-take-action" id="mobileActionBtn" style="width: 100%;">LOGIN / SIGN UP</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Page Banner Section
+       ========================================================================== -->
+  <section class="page-banner" aria-labelledby="aboutPageTitle">
+    <div class="banner-inner">
+      <!-- Breadcrumb Navigation Bar -->
+      <div class="page-nav-bar">
+        <nav aria-label="Breadcrumb">
+          <ul class="breadcrumb-list">
+            <li><a href="index.html" class="breadcrumb-link">Home</a></li>
+            <li class="breadcrumb-separator">/</li>
+            <li class="breadcrumb-current">About Us</li>
+          </ul>
+        </nav>
+
+        <div class="page-quick-actions">
+          <a href="index.html" class="btn-nav-outline" id="btnBackHome">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Home
+          </a>
+          <a href="farmer.html" class="btn-nav-outline" id="btnFindMachinery">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            Find Machinery
+          </a>
+          <a href="owner.html" class="btn-nav-outline" id="btnListMachine">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            List Machine
+          </a>
+        </div>
+      </div>
+
+      <!-- Title & Header Card -->
+      <div class="page-title-box">
+        <h1 class="page-title" id="aboutPageTitle">ABOUT AGRI-RENTAL</h1>
+        <div class="page-title-underline" aria-hidden="true"></div>
+        <div class="page-explanation-card">
+          <p>
+            Bridging the agricultural mechanization gap by connecting farmers with reliable machinery owners through transparent, community-centric technology.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Main About Us Content Sections
+       ========================================================================== -->
+  <main class="about-page-main">
+    <div class="about-content-wrapper">
+
+      <!-- ====================================================================
+           1. System Introduction
+           ==================================================================== -->
+      <section aria-labelledby="introSectionTitle">
+        <div class="about-section-header">
+          <h2 class="about-section-title" id="introSectionTitle">THE AGRI-RENTAL PLATFORM</h2>
+          <p class="about-section-subtitle">
+            An engineering initiative developed under the Department of Information Technology at K. J. Somaiya Institute of Technology (KJSIT), Somaiya Vidyavihar, Mumbai.
+          </p>
+        </div>
+
+        <div class="about-grid-3">
+          <article class="about-card">
+            <span class="about-card-icon" aria-hidden="true">🌾</span>
+            <h3 class="about-card-title">Shared Farm Economy</h3>
+            <p class="about-card-desc">
+              Transforming costly machinery ownership into flexible on-demand access. Farmers hire modern tractors, harvesters, and tillers only for the exact hours or acres needed.
+            </p>
+          </article>
+
+          <article class="about-card">
+            <span class="about-card-icon" aria-hidden="true">🤝</span>
+            <h3 class="about-card-title">Direct Peer Connection</h3>
+            <p class="about-card-desc">
+              Eliminating non-transparent middlemen by facilitating direct communication and booking agreements between local farmers and verified equipment owners.
+            </p>
+          </article>
+
+          <article class="about-card">
+            <span class="about-card-icon" aria-hidden="true">📈</span>
+            <h3 class="about-card-title">Productivity &amp; Income</h3>
+            <p class="about-card-desc">
+              Helping farmers boost seasonal yield through timely mechanization while empowering machinery owners to turn idle equipment into recurring, sustainable revenue.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           2. What Problem We Address
+           ==================================================================== -->
+      <section aria-labelledby="problemSectionTitle">
+        <div class="about-section-header">
+          <h2 class="about-section-title" id="problemSectionTitle">WHAT PROBLEM WE ADDRESS</h2>
+          <p class="about-section-subtitle">
+            Over 85% of cultivators in India are smallholder and marginal farmers who face severe barriers when trying to adopt modern agricultural machinery.
+          </p>
+        </div>
+
+        <div class="about-dual-grid">
+          <!-- The Challenge -->
+          <article class="about-dual-card card-problem" aria-labelledby="challengeHeading">
+            <div class="dual-card-header">
+              <span class="dual-card-icon" aria-hidden="true">⚠️</span>
+              <h3 class="dual-card-title" id="challengeHeading">The Agricultural Challenge</h3>
+            </div>
+            <ul class="about-points-list">
+              <li class="about-point-item">
+                <span class="point-bullet" aria-hidden="true">✕</span>
+                <div>
+                  <strong>Prohibitive Capital Investment:</strong> Commercial tractors, combine harvesters, and laser land levelers require heavy loans that smallholder farmers cannot afford.
+                </div>
+              </li>
+              <li class="about-point-item">
+                <span class="point-bullet" aria-hidden="true">✕</span>
+                <div>
+                  <strong>Underutilized Private Machinery:</strong> Equipment owners and commercial contractors often leave expensive farm machinery idle during non-peak weeks, incurring depreciation.
+                </div>
+              </li>
+              <li class="about-point-item">
+                <span class="point-bullet" aria-hidden="true">✕</span>
+                <div>
+                  <strong>Fragmented Local Availability:</strong> Farmers historically rely on informal word-of-mouth networks, leading to delayed sowing, missed harvest windows, and arbitrary pricing.
+                </div>
+              </li>
+              <li class="about-point-item">
+                <span class="point-bullet" aria-hidden="true">✕</span>
+                <div>
+                  <strong>Debt Burdens &amp; Inefficiency:</strong> High reliance on manual labor or unstandardized hiring increases production costs and reduces total seasonal yield.
+                </div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Our Solution -->
+          <article class="about-dual-card card-solution" aria-labelledby="solutionHeading">
+            <div class="dual-card-header">
+              <span class="dual-card-icon" aria-hidden="true">✅</span>
+              <h3 class="dual-card-title" id="solutionHeading">How Rental Access Helps</h3>
+            </div>
+            <ul class="about-points-list">
+              <li class="about-point-item">
+                <span class="point-bullet" aria-hidden="true">✓</span>
+                <div>
+                  <strong>Zero Capital Burden:</strong> Farmers rent advanced machinery for exact dates and acreage, accessing cutting-edge technology without long-term loans or debt.
+                </div>
+              </li>
+              <li class="about-point-item">
+                <span class="point-bullet" aria-hidden="true">✓</span>
+                <div>
+                  <strong>Monetizing Idle Assets:</strong> Equipment owners list available tractors and implements, reaching a wider base of local cultivators and maximizing machinery ROI.
+                </div>
+              </li>
+              <li class="about-point-item">
+                <span class="point-bullet" aria-hidden="true">✓</span>
+                <div>
+                  <strong>Transparent Discovery &amp; Booking:</strong> Farmers search nearby equipment within customized radius filters (10 km to district-wide) with upfront, published rates.
+                </div>
+              </li>
+              <li class="about-point-item">
+                <span class="point-bullet" aria-hidden="true">✓</span>
+                <div>
+                  <strong>Timely Seasonal Operations:</strong> Guaranteed access during critical weather windows ensures optimal planting, weed management, and rapid harvesting.
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           3. How Our System Works (Workflow Overview)
+           ==================================================================== -->
+      <section aria-labelledby="howSystemWorksTitle">
+        <div class="about-section-header">
+          <h2 class="about-section-title" id="howSystemWorksTitle">HOW OUR SYSTEM WORKS</h2>
+          <p class="about-section-subtitle">
+            A synchronized, two-sided platform that aligns farmer equipment needs with owner availability schedules.
+          </p>
+        </div>
+
+        <div class="roles-grid">
+          <!-- Column 1: Farmer Workflow -->
+          <article class="role-column" aria-labelledby="aboutRoleFarmers">
+            <div class="role-header">
+              <span class="role-icon" aria-hidden="true">🌾</span>
+              <h3 class="role-title" id="aboutRoleFarmers">For Farmers: Rent Equipment</h3>
+            </div>
+
+            <ol class="steps-list">
+              <li class="step-item">
+                <strong class="step-label">Find Machinery</strong>
+                <span class="step-desc">– Select your required equipment (tractor, harvester, rotavator, or implements).</span>
+              </li>
+              <li class="step-item">
+                <strong class="step-label">Set Dates &amp; Radius</strong>
+                <span class="step-desc">– Choose delivery dates, rental duration, and preferred location search distance.</span>
+              </li>
+              <li class="step-item">
+                <strong class="step-label">Review Specifications</strong>
+                <span class="step-desc">– Verify machine horsepower, attachments, operator availability, and budget parameters.</span>
+              </li>
+              <li class="step-item">
+                <strong class="step-label">Submit Request</strong>
+                <span class="step-desc">– Send a booking request directly to matching equipment owners in your area.</span>
+              </li>
+              <li class="step-item">
+                <strong class="step-label">Operate on Farm</strong>
+                <span class="step-desc">– Receive confirmation, utilize machinery for farm operations, and submit performance feedback.</span>
+              </li>
+            </ol>
+
+            <a href="farmer.html" class="btn-take-action" style="text-align: center; margin-top: 1rem;">
+              EXPLORE FARMER PORTAL &rarr;
+            </a>
+          </article>
+
+          <!-- Column 2: Machine Owner Workflow -->
+          <article class="role-column" aria-labelledby="aboutRoleOwners">
+            <div class="role-header">
+              <span class="role-icon" aria-hidden="true">🚜</span>
+              <h3 class="role-title" id="aboutRoleOwners">For Owners: List Machinery</h3>
+            </div>
+
+            <ol class="steps-list">
+              <li class="step-item">
+                <strong class="step-label">List Machine</strong>
+                <span class="step-desc">– Register equipment details, brand/model, horsepower, year, and operational conditions.</span>
+              </li>
+              <li class="step-item">
+                <strong class="step-label">Set Pricing &amp; Terms</strong>
+                <span class="step-desc">– Define transparent hourly, daily, or acre-based rental pricing and fuel arrangements.</span>
+              </li>
+              <li class="step-item">
+                <strong class="step-label">Define Availability</strong>
+                <span class="step-desc">– Mark dates when your machine is available for hire and specify service radius.</span>
+              </li>
+              <li class="step-item">
+                <strong class="step-label">Manage Requests</strong>
+                <span class="step-desc">– Review rental inquiries from local farmers, inspect field requirements, and accept bookings.</span>
+              </li>
+              <li class="step-item">
+                <strong class="step-label">Earn &amp; Grow</strong>
+                <span class="step-desc">– Dispatch equipment, complete rentals securely, and generate regular income from idle assets.</span>
+              </li>
+            </ol>
+
+            <a href="owner.html" class="btn-take-action" style="text-align: center; margin-top: 1rem;">
+              EXPLORE OWNER PORTAL &rarr;
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           4. Who Built This (Development Team)
+           ==================================================================== -->
+      <section aria-labelledby="teamSectionTitle">
+        <div class="about-section-header">
+          <h2 class="about-section-title" id="teamSectionTitle">WHO BUILT THIS</h2>
+          <p class="about-section-subtitle">
+            Conceptualized, designed, and engineered as an academic and social innovation project by students and faculty at K. J. Somaiya Institute of Technology (KJSIT), Department of Information Technology.
+          </p>
+        </div>
+
+        <div class="about-team-grid">
+          <!-- Member Card 1 -->
+          <article class="team-card">
+            <div class="team-avatar-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <h3 class="team-member-title">Developer Team Member 1</h3>
+            <div class="team-member-role">Frontend &amp; UI Architecture</div>
+            <div class="team-dept-badge">Dept. of Information Technology<br>KJSIT, Somaiya Vidyavihar</div>
+            <div class="team-tags-container">
+              <span class="team-tag">Semantic HTML5</span>
+              <span class="team-tag">CSS Design Tokens</span>
+              <span class="team-tag">Responsive UI</span>
+            </div>
+            <div class="team-card-actions">
+              <a href="#" class="team-placeholder-btn" aria-label="Team member profile placeholder">Profile</a>
+              <a href="#" class="team-placeholder-btn" aria-label="Team member GitHub placeholder">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Member Card 2 -->
+          <article class="team-card">
+            <div class="team-avatar-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <h3 class="team-member-title">Developer Team Member 2</h3>
+            <div class="team-member-role">Client Logic &amp; Interactions</div>
+            <div class="team-dept-badge">Dept. of Information Technology<br>KJSIT, Somaiya Vidyavihar</div>
+            <div class="team-tags-container">
+              <span class="team-tag">Vanilla JavaScript</span>
+              <span class="team-tag">Form Validation</span>
+              <span class="team-tag">Modal Systems</span>
+            </div>
+            <div class="team-card-actions">
+              <a href="#" class="team-placeholder-btn" aria-label="Team member profile placeholder">Profile</a>
+              <a href="#" class="team-placeholder-btn" aria-label="Team member GitHub placeholder">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Member Card 3 -->
+          <article class="team-card">
+            <div class="team-avatar-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </div>
+            <h3 class="team-member-title">Developer Team Member 3</h3>
+            <div class="team-member-role">Data Models &amp; Architecture</div>
+            <div class="team-dept-badge">Dept. of Information Technology<br>KJSIT, Somaiya Vidyavihar</div>
+            <div class="team-tags-container">
+              <span class="team-tag">API Specification</span>
+              <span class="team-tag">Data Architecture</span>
+              <span class="team-tag">System Security</span>
+            </div>
+            <div class="team-card-actions">
+              <a href="#" class="team-placeholder-btn" aria-label="Team member profile placeholder">Profile</a>
+              <a href="#" class="team-placeholder-btn" aria-label="Team member GitHub placeholder">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Member Card 4: Mentor / Faculty Advisor -->
+          <article class="team-card">
+            <div class="team-avatar-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+            </div>
+            <h3 class="team-member-title">Faculty Project Mentor</h3>
+            <div class="team-member-role">Academic &amp; Project Advisory</div>
+            <div class="team-dept-badge">Dept. of Information Technology<br>KJSIT, Somaiya Vidyavihar</div>
+            <div class="team-tags-container">
+              <span class="team-tag">Project Supervision</span>
+              <span class="team-tag">Agri-Tech Domain</span>
+              <span class="team-tag">System Review</span>
+            </div>
+            <div class="team-card-actions">
+              <a href="#" class="team-placeholder-btn" aria-label="Faculty advisor profile placeholder">Department</a>
+              <a href="#" class="team-placeholder-btn" aria-label="Faculty advisor academic page placeholder">Research</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           5. Project Purpose & Conclusion
+           ==================================================================== -->
+      <section aria-labelledby="purposeSectionTitle">
+        <div class="about-conclusion-box">
+          <h2 class="about-conclusion-title" id="purposeSectionTitle">PROJECT PURPOSE &amp; VISION</h2>
+          <p class="about-conclusion-text">
+            Agricultural-Rental Machinery illustrates how software engineering and modern web technologies can directly empower rural farming ecosystems. By democratizing access to high-efficiency agricultural machinery, our aim is to lower operational costs, enhance farm productivity, and foster stronger community cooperation across regions.
+          </p>
+          <div class="about-cta-buttons">
+            <a href="farmer.html" class="btn-hero-action" style="padding: 0.95rem 1.75rem; font-size: 0.88rem;">
+              FIND MACHINERY FOR FARMERS
+            </a>
+            <a href="owner.html" class="btn-hero-action" style="padding: 0.95rem 1.75rem; font-size: 0.88rem;">
+              LIST YOUR MACHINE FOR OWNERS
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       Footer Section (Identical to Site Layout)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <!-- Department and College Info -->
+      <div class="footer-col-about">
+        <h4 class="footer-brand-title">AGRICULTURAL–RENTAL MACHINERY</h4>
+        <p class="footer-address">
+          K. J. Somaiya Institute of Technology is located at Somaiya Ayurvihar Complex, Eastern Express Highway, near Everard Nagar, Sion East, Mumbai, Maharashtra 400022.
+        </p>
+        <p class="footer-credits">Made by KJSIT-IT DEPARTMENT.</p>
+      </div>
+
+      <!-- Our Work Links -->
+      <div class="footer-col-work">
+        <h4 class="footer-col-title">Our Work</h4>
+        <ul class="footer-nav-list">
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="farmer.html" class="footer-link">Find Machinery</a></li>
+          <li><a href="owner.html" class="footer-link">List Machine</a></li>
+          <li><a href="index.html#howItWorks" class="footer-link">How It Works</a></li>
+        </ul>
+      </div>
+
+      <!-- Follow Social Links -->
+      <div class="footer-col-follow">
+        <h4 class="footer-col-title">Follow</h4>
+        <ul class="footer-nav-list">
+          <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-link">Twitter</a></li>
+          <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+          <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-link">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Modal Container (Used for Demo Videos & Future Previews)
+       ========================================================================== -->
+  <div class="modal-overlay" id="appModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Dialog</h3>
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close dialog">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-take-action" id="modalOkBtn" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Main Application Script -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

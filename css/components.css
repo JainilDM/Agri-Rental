@@ -375,3 +375,594 @@
   transform: translateY(0);
   opacity: 1;
 }
+
+/* ==========================================================================
+   About Us Page Components
+   ========================================================================== */
+.about-page-main {
+  background-color: var(--color-dark-bg);
+  padding: 4rem 1.5rem 6rem;
+  min-height: 60vh;
+}
+
+.about-content-wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+
+.about-section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.about-section-title {
+  font-family: var(--font-family-heading);
+  color: var(--color-primary-yellow);
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.about-section-subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Pillar & Feature Cards */
+.about-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.about-card {
+  background: #141d16;
+  border: 1px solid rgba(255, 191, 0, 0.22);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.about-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-primary-yellow);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 191, 0, 0.15);
+}
+
+.about-card-icon {
+  font-size: 2.25rem;
+  line-height: 1;
+  display: inline-block;
+}
+
+.about-card-title {
+  font-family: var(--font-family-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.about-card-desc {
+  color: #D1D5DB;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Problem vs Solution Comparison Grid */
+.about-dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.about-dual-card {
+  background: #111a13;
+  border-radius: var(--radius-md);
+  padding: 2.25rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.about-dual-card.card-problem {
+  border-top: 4px solid #ef4444;
+}
+
+.about-dual-card.card-solution {
+  border-top: 4px solid var(--color-primary-yellow);
+}
+
+.dual-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dual-card-icon {
+  font-size: 1.85rem;
+  line-height: 1;
+}
+
+.dual-card-title {
+  font-family: var(--font-family-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.about-points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.about-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #E2E8F0;
+}
+
+.point-bullet {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.card-problem .point-bullet {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+.card-solution .point-bullet {
+  background: rgba(255, 191, 0, 0.2);
+  color: var(--color-primary-yellow);
+}
+
+.about-point-item strong {
+  color: #FFFFFF;
+}
+
+/* Team Grid & Cards */
+.about-team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.team-card {
+  background: #141d16;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary-yellow);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+
+.team-avatar-wrap {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(167, 25, 48, 0.35) 0%, rgba(255, 191, 0, 0.25) 100%);
+  border: 2px solid var(--color-primary-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.15rem;
+  color: var(--color-primary-yellow);
+}
+
+.team-avatar-wrap svg {
+  width: 40px;
+  height: 40px;
+  fill: currentColor;
+}
+
+.team-member-title {
+  font-family: var(--font-family-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 0.35rem 0;
+}
+
+.team-member-role {
+  color: var(--color-primary-yellow);
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.team-dept-badge {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.15rem;
+  line-height: 1.35;
+}
+
+.team-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 1.15rem;
+}
+
+.team-tag {
+  font-size: 0.72rem;
+  color: #d1d5db;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+
+.team-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.team-placeholder-btn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.team-placeholder-btn:hover {
+  background: var(--color-primary-yellow);
+  border-color: var(--color-primary-yellow);
+  color: #000000;
+}
+
+/* Conclusion Banner Card */
+.about-conclusion-box {
+  background: linear-gradient(135deg, rgba(20, 29, 22, 0.95) 0%, rgba(13, 22, 14, 0.95) 100%);
+  border: 2px solid rgba(255, 191, 0, 0.35);
+  border-radius: var(--radius-md);
+  padding: 3rem 2.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.about-conclusion-title {
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 800;
+  color: var(--color-primary-yellow);
+  margin-bottom: 1rem;
+}
+
+.about-conclusion-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #E2E8F0;
+  max-width: 820px;
+  margin: 0 auto 2.25rem;
+}
+
+.about-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive adjustments for About Us */
+@media (max-width: 1024px) {
+  .about-team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-dual-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .about-team-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-conclusion-box {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   Contact Us Section Components
+   ========================================================================== */
+.contact-section {
+  background-color: var(--color-dark-bg);
+  padding: 5rem 1.5rem 6.5rem;
+  border-top: 1px solid #1a1a1a;
+}
+
+.contact-subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin: 0.85rem auto 0;
+  line-height: 1.6;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  background: #141d16;
+  border: 1px solid rgba(255, 191, 0, 0.22);
+  border-radius: var(--radius-md);
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contact-card:hover {
+  border-color: var(--color-primary-yellow);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.contact-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-card-icon {
+  font-size: 2.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.contact-card-title {
+  font-family: var(--font-family-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 0.25rem 0;
+}
+
+.contact-card-desc {
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #E2E8F0;
+}
+
+.contact-info-icon {
+  font-size: 1.35rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-info-item strong {
+  color: var(--color-primary-yellow);
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.contact-info-item p {
+  margin: 0;
+  color: #D1D5DB;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.official-links-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+}
+
+.btn-official-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.15rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-sm);
+  color: #FFFFFF;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-official-link:hover {
+  background: rgba(255, 191, 0, 0.15);
+  border-color: var(--color-primary-yellow);
+  color: var(--color-primary-yellow);
+  transform: translateX(3px);
+}
+
+.btn-official-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.team-emails-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background: rgba(255, 191, 0, 0.08);
+  border-left: 3px solid var(--color-primary-yellow);
+  padding: 0.75rem 1rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.83rem;
+  color: #fef08a;
+  margin-bottom: 1.5rem;
+  line-height: 1.45;
+}
+
+.notice-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  margin-top: 1px;
+}
+
+.team-emails-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.team-email-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.15rem;
+  transition: border-color var(--transition-fast);
+}
+
+.team-email-row:hover {
+  border-color: rgba(255, 191, 0, 0.4);
+}
+
+.team-email-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.team-email-role {
+  font-size: 0.78rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+
+.team-email-id {
+  font-family: monospace;
+  font-size: 0.95rem;
+  color: var(--color-primary-yellow);
+  font-weight: 600;
+}
+
+.email-tag-placeholder {
+  font-size: 0.72rem;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.contact-card-footer-cta {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.88rem;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+.contact-card-footer-cta p {
+  margin: 0;
+}
+
+@media (max-width: 860px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .contact-card {
+    padding: 1.75rem 1.25rem;
+  }
+}

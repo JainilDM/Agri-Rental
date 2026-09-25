@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Your Machine for Owners | Agricultural-Rental Machinery</title>
+  <meta name="description" content="List your agricultural machinery on Agricultural-Rental Machinery platform. Rent out tractors, harvesters, and farm equipment to local farmers and earn consistent income.">
+  <meta name="keywords" content="List Farm Machinery, Rent Tractor Out, Equipment Owner Portal, Agricultural Machinery Rental, Somaiya, KJSIT">
+
+  <!-- Google Fonts: Inter & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css?v=3.0">
+  <link rel="stylesheet" href="css/components.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/forms.css?v=1.0">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Header & Navigation Bar
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <!-- Institution Brand Logo -->
+      <a href="index.html" class="brand-logo-link" aria-label="Somaiya Vidyavihar Homepage">
+        <img src="assets/images/somaiya-logo.png" alt="Somaiya Vidyavihar - K. J. Somaiya Institute of Technology Logo" class="brand-logo">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <div class="nav-desktop">
+        <nav class="header-nav" aria-label="Primary Navigation">
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="index.html#howItWorks" class="nav-link">How It Works</a></li>
+            <li><a href="farmer.html" class="nav-link">Find Machinery</a></li>
+            <li><a href="owner.html" class="nav-link active">List Machine</a></li>
+            <li><a href="index.html#about" class="nav-link">About Us</a></li>
+            <li><a href="index.html#contact" class="nav-link">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <!-- Social Icons & Action CTA -->
+        <div class="header-actions">
+          <div class="social-links" aria-label="Social Media Links">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.356 5 15.627 5H18V0h-3.808C10.595 0 9 1.582 9 4.615V8z"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Quick Return to Home Link -->
+          <a href="index.html" class="btn-take-action">BACK TO HOME</a>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button type="button" class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+      </button>
+    </div>
+
+    <!-- Responsive Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="index.html#howItWorks" class="mobile-nav-link">How It Works</a></li>
+        <li><a href="farmer.html" class="mobile-nav-link">Find Machinery (For Farmers)</a></li>
+        <li><a href="owner.html" class="mobile-nav-link active">List Machine (For Owners)</a></li>
+        <li><a href="index.html#about" class="mobile-nav-link">About Us</a></li>
+        <li><a href="index.html#contact" class="mobile-nav-link">Contact Us</a></li>
+      </ul>
+      <div class="mobile-nav-actions">
+        <a href="index.html" class="btn-take-action" style="text-align: center;">BACK TO HOME</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Page Banner Section
+       ========================================================================== -->
+  <section class="page-banner">
+    <div class="banner-inner">
+      <!-- Quick Navigation & Breadcrumb -->
+      <div class="page-nav-bar">
+        <nav aria-label="Breadcrumb">
+          <ul class="breadcrumb-list">
+            <li><a href="index.html" class="breadcrumb-link">Home</a></li>
+            <li class="breadcrumb-separator">/</li>
+            <li class="breadcrumb-current">List Your Machine</li>
+          </ul>
+        </nav>
+
+        <div class="page-quick-actions">
+          <a href="index.html" class="btn-nav-outline" id="btnBackHomeOwner">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Back to Home
+          </a>
+          <a href="index.html#howItWorks" class="btn-nav-outline" id="btnHowItWorksOwner">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+            How It Works
+          </a>
+        </div>
+      </div>
+
+      <!-- Page Heading & Explanation -->
+      <div class="page-title-box">
+        <h1 class="page-title">LIST YOUR MACHINE</h1>
+        <div class="page-title-underline" aria-hidden="true"></div>
+        <div class="page-explanation-card">
+          <p>
+            Monetize your idle tractors, combine harvesters, and agricultural equipment. Register your machinery, set your custom rental rates and availability windows, and connect with trusted local farmers in your region.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Main Form & Login Section
+       ========================================================================== -->
+  <main class="form-page-main">
+    <div class="form-container">
+
+      <!-- Login / Register Section -->
+      <section class="auth-panel-card" aria-labelledby="ownerAuthTitle">
+        <div class="auth-panel-header">
+          <div class="auth-header-info">
+            <span class="auth-header-icon" aria-hidden="true">🚜</span>
+            <div class="auth-header-text">
+              <h3 id="ownerAuthTitle">Equipment Owner Portal</h3>
+              <p>Already a registered machinery owner? Log in to manage your active listings and bookings, or create a new machine listing below.</p>
+            </div>
+          </div>
+
+          <!-- Auth Mode Switcher -->
+          <div class="auth-tabs-group" role="tablist" aria-label="Owner Authentication Mode">
+            <button type="button" class="auth-tab-btn active" data-tab="tabNewListing" role="tab" aria-selected="true">
+              Listing Form
+            </button>
+            <button type="button" class="auth-tab-btn" data-tab="tabOwnerLogin" role="tab" aria-selected="false">
+              Owner Login
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Login Tab Content -->
+        <div class="auth-tab-content" id="tabOwnerLogin" style="display: none;">
+          <form id="quickLoginForm" class="auth-inline-form">
+            <div class="form-group">
+              <label for="quickLoginId" class="form-label">Owner Mobile or Email</label>
+              <input type="text" id="quickLoginId" class="form-control" placeholder="e.g. 9820012345 or owner@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="quickLoginPin" class="form-label">PIN / Password</label>
+              <input type="password" id="quickLoginPin" class="form-control" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-gps-action" style="padding: 0.75rem 1.5rem;">
+              Sign In
+            </button>
+          </form>
+          <div id="quickLoginFeedback" class="auth-notice-box" style="margin-top: 0.75rem; display: none;"></div>
+        </div>
+
+        <!-- Guest / Direct Listing Tab Content -->
+        <div class="auth-tab-content" id="tabNewListing" style="display: block;">
+          <div class="auth-notice-box">
+            <strong>Instant Listing:</strong> You can register your equipment immediately. Your machinery owner profile will be linked to your contact number upon submission.
+          </div>
+        </div>
+      </section>
+
+      <!-- Primary Machine Listing Form -->
+      <section class="main-form-card" id="ownerFormCard" aria-labelledby="ownerFormTitle">
+        <form id="ownerForm" novalidate>
+
+          <!-- Fieldset 1: Owner Contact Information -->
+          <fieldset class="form-fieldset">
+            <div class="fieldset-legend">
+              <span class="legend-icon" aria-hidden="true">👤</span>
+              <h2 class="legend-title" id="ownerFormTitle">Owner Information</h2>
+              <span class="legend-subtitle">Fields marked with <span class="required-star">*</span> are required</span>
+            </div>
+
+            <div class="form-grid-2">
+              <!-- Owner Name -->
+              <div class="form-group">
+                <label for="ownerName" class="form-label">
+                  Owner Name <span class="required-star">*</span>
+                </label>
+                <input type="text" id="ownerName" name="ownerName" class="form-control" placeholder="e.g. Balwinder Singh" required>
+                <span class="form-error">Please enter your full name.</span>
+              </div>
+
+              <!-- Mobile Number -->
+              <div class="form-group">
+                <label for="ownerPhone" class="form-label">
+                  Mobile Number <span class="required-star">*</span>
+                </label>
+                <input type="tel" id="ownerPhone" name="ownerPhone" class="form-control" placeholder="e.g. 9820012345" maxlength="10" required>
+                <span class="form-hint">10-digit mobile number for rental inquiry alerts.</span>
+                <span class="form-error">Enter a valid 10-digit mobile number.</span>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="ownerEmail" class="form-label">
+                  Email Address <span class="required-star">*</span>
+                </label>
+                <input type="email" id="ownerEmail" name="ownerEmail" class="form-control" placeholder="e.g. balwinder.singh@gmail.com" required>
+                <span class="form-error">Enter a valid email address.</span>
+              </div>
+
+              <!-- Owner Location -->
+              <div class="form-group">
+                <label for="ownerLocation" class="form-label">
+                  Owner Base Location (Town / District) <span class="required-star">*</span>
+                </label>
+                <input type="text" id="ownerLocation" name="ownerLocation" class="form-control" placeholder="e.g. Nashik, Maharashtra" required>
+                <span class="form-hint">Your residential or dispatch office address.</span>
+                <span class="form-error">Owner location is required.</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Fieldset 2: Machine Details & Specifications -->
+          <fieldset class="form-fieldset">
+            <div class="fieldset-legend">
+              <span class="legend-icon" aria-hidden="true">🚜</span>
+              <h2 class="legend-title">Machine Specifications</h2>
+            </div>
+
+            <div class="form-grid-2">
+              <!-- Machine Name -->
+              <div class="form-group">
+                <label for="machineName" class="form-label">
+                  Machine Name / Listing Title <span class="required-star">*</span>
+                </label>
+                <input type="text" id="machineName" name="machineName" class="form-control" placeholder="e.g. Mahindra 575 DI 45 HP Tractor with Rotary Tiller" required>
+                <span class="form-hint">A clear title that farmers will see in listings.</span>
+                <span class="form-error">Machine name is required.</span>
+              </div>
+
+              <!-- Machinery Category -->
+              <div class="form-group">
+                <label for="ownerMachineryCategory" class="form-label">
+                  Machinery Category <span class="required-star">*</span>
+                </label>
+                <select id="ownerMachineryCategory" name="ownerMachineryCategory" class="form-control" required>
+                  <option value="" disabled selected>-- Select Equipment Category --</option>
+                  <option value="tractors">Tractor (Utility / Orchard / Heavy)</option>
+                  <option value="harvesters">Combine Harvester (Self-Propelled / Tractor-Mounted)</option>
+                  <option value="cultivators">Cultivator / Rotavator / Power Tiller</option>
+                  <option value="sowing">Seed Drill / Planter</option>
+                  <option value="sprayers">Boom Sprayer / Tractor Mounted Sprayer</option>
+                  <option value="threshers">Multi-Crop Thresher</option>
+                  <option value="balers">Square / Round Straw Baler</option>
+                  <option value="earthmovers">Backhoe Loader / Excavator</option>
+                  <option value="other">Other Agricultural Machinery</option>
+                </select>
+                <span class="form-error">Please select a machinery category.</span>
+              </div>
+
+              <!-- Brand / Model -->
+              <div class="form-group">
+                <label for="brandModel" class="form-label">
+                  Brand / Model <span class="required-star">*</span>
+                </label>
+                <input type="text" id="brandModel" name="brandModel" class="form-control" placeholder="e.g. John Deere 5310 / Swaraj 744 FE" required>
+                <span class="form-hint">Manufacturer make and model number.</span>
+                <span class="form-error">Brand and model is required.</span>
+              </div>
+
+              <!-- Manufacturing Year -->
+              <div class="form-group">
+                <label for="manufacturingYear" class="form-label">
+                  Manufacturing Year <span class="required-star">*</span>
+                </label>
+                <input type="number" id="manufacturingYear" name="manufacturingYear" class="form-control" placeholder="e.g. 2021" min="1980" max="2027" required>
+                <span class="form-hint">Year the machine was manufactured.</span>
+                <span class="form-error">Enter a valid manufacturing year (1980-2027).</span>
+              </div>
+
+              <!-- Machine Description -->
+              <div class="form-group form-col-full">
+                <label for="machineDescription" class="form-label">
+                  Machine Description <span class="required-star">*</span>
+                </label>
+                <textarea id="machineDescription" name="machineDescription" class="form-control" placeholder="Describe the machine's condition, horsepower, included accessories/implements, maintenance history, driver availability, fuel guidelines, and usage terms." required></textarea>
+                <span class="form-hint">Provide full details to build trust with renting farmers.</span>
+                <span class="form-error">Please enter a description for the machine (at least 10 characters).</span>
+              </div>
+
+              <!-- Machine Photos Upload -->
+              <div class="form-group form-col-full">
+                <label class="form-label">
+                  Machine Photos
+                </label>
+                <div class="file-upload-wrapper" id="photoDropZone">
+                  <input type="file" id="machinePhotos" name="machinePhotos" class="file-upload-input" accept="image/png, image/jpeg, image/webp" multiple>
+                  <svg class="file-upload-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                  </svg>
+                  <div class="file-upload-text">Click or drag &amp; drop photos of your machinery</div>
+                  <div class="file-upload-subtext">Supports PNG, JPG, or WEBP (Max 5 photos, up to 10MB each)</div>
+                </div>
+                <div class="file-preview-list" id="photoPreviewList"></div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Fieldset 3: Pricing & Rental Terms -->
+          <fieldset class="form-fieldset">
+            <div class="fieldset-legend">
+              <span class="legend-icon" aria-hidden="true">💰</span>
+              <h2 class="legend-title">Pricing &amp; Rental Terms</h2>
+            </div>
+
+            <div class="form-grid-2">
+              <!-- Rental Price -->
+              <div class="form-group">
+                <label for="rentalPrice" class="form-label">
+                  Rental Price (₹) <span class="required-star">*</span>
+                </label>
+                <input type="number" id="rentalPrice" name="rentalPrice" class="form-control" placeholder="e.g. 800" min="50" step="25" required>
+                <span class="form-hint">Set your competitive rental fee in Indian Rupees.</span>
+                <span class="form-error">Please enter a valid rental price.</span>
+              </div>
+
+              <!-- Price Unit (Hour / Day / Week) -->
+              <div class="form-group">
+                <label class="form-label">
+                  Price Unit <span class="required-star">*</span>
+                </label>
+                <div class="radio-pill-group" role="radiogroup" aria-label="Rental Price Unit">
+                  <label class="radio-pill-label">
+                    <input type="radio" name="priceUnit" value="Hour">
+                    <span>Per Hour</span>
+                  </label>
+                  <label class="radio-pill-label active">
+                    <input type="radio" name="priceUnit" value="Day" checked>
+                    <span>Per Day</span>
+                  </label>
+                  <label class="radio-pill-label">
+                    <input type="radio" name="priceUnit" value="Week">
+                    <span>Per Week</span>
+                  </label>
+                </div>
+                <span class="form-hint">Choose how the rental rate is calculated.</span>
+              </div>
+
+              <!-- Minimum Rental Duration -->
+              <div class="form-group">
+                <label for="minRentalDuration" class="form-label">
+                  Minimum Rental Duration <span class="required-star">*</span>
+                </label>
+                <input type="text" id="minRentalDuration" name="minRentalDuration" class="form-control" placeholder="e.g. 1 Day (or 4 Hours)" required>
+                <span class="form-hint">Minimum time a farmer must rent this machine.</span>
+                <span class="form-error">Specify the minimum rental duration.</span>
+              </div>
+
+              <!-- Maximum Rental Duration -->
+              <div class="form-group">
+                <label for="maxRentalDuration" class="form-label">
+                  Maximum Rental Duration <span class="required-star">*</span>
+                </label>
+                <input type="text" id="maxRentalDuration" name="maxRentalDuration" class="form-control" placeholder="e.g. 30 Days (or 1 Full Season)" required>
+                <span class="form-hint">Maximum continuous rental period allowed.</span>
+                <span class="form-error">Specify the maximum rental duration.</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Fieldset 4: Machine Location & Availability Calendar -->
+          <fieldset class="form-fieldset">
+            <div class="fieldset-legend">
+              <span class="legend-icon" aria-hidden="true">📍</span>
+              <h2 class="legend-title">Location &amp; Availability</h2>
+            </div>
+
+            <div class="form-grid-2">
+              <!-- Machine Location with GPS -->
+              <div class="form-group form-col-full">
+                <label for="machineLocation" class="form-label">
+                  Machine Physical Location (Shed / Farm / Town) <span class="required-star">*</span>
+                </label>
+                <div class="input-with-action">
+                  <input type="text" id="machineLocation" name="machineLocation" class="form-control" placeholder="e.g. Somaiya Ayurvihar, Sion East, Mumbai 400022" required>
+                  <button type="button" class="btn-gps-action" id="btnOwnerGps" data-target="machineLocation" data-status="ownerGpsStatus" title="Detect machine current GPS location">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0013 3.06V1h-2v2.06A8.994 8.994 0 003.06 11H1v2h2.06A8.994 8.994 0 0011 20.94V23h2v-2.06A8.994 8.994 0 0020.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
+                    GPS Location
+                  </button>
+                </div>
+                <span class="gps-feedback-msg" id="ownerGpsStatus"></span>
+                <span class="form-hint">Physical storage location where farmers can pick up or receive the machine.</span>
+                <span class="form-error">Machine location is required.</span>
+              </div>
+
+              <!-- Availability Status -->
+              <div class="form-group form-col-full">
+                <label for="availabilityStatus" class="form-label">
+                  Availability Status <span class="required-star">*</span>
+                </label>
+                <select id="availabilityStatus" name="availabilityStatus" class="form-control" required>
+                  <option value="" disabled selected>-- Select Equipment Availability --</option>
+                  <option value="immediate">Immediately Available</option>
+                  <option value="seasonal">Available for Upcoming Harvest / Sowing Season</option>
+                  <option value="weekdays">Weekdays Only</option>
+                  <option value="weekends">Weekends Only</option>
+                  <option value="custom">Custom Schedule (See Dates Below)</option>
+                </select>
+                <span class="form-error">Please select availability status.</span>
+              </div>
+
+              <!-- Available From -->
+              <div class="form-group">
+                <label for="availableFrom" class="form-label">
+                  Available From <span class="required-star">*</span>
+                </label>
+                <input type="date" id="availableFrom" name="availableFrom" class="form-control" required>
+                <span class="form-hint">First date machine is free to be rented.</span>
+                <span class="form-error">Specify Available From date.</span>
+              </div>
+
+              <!-- Available Until -->
+              <div class="form-group">
+                <label for="availableUntil" class="form-label">
+                  Available Until <span class="required-star">*</span>
+                </label>
+                <input type="date" id="availableUntil" name="availableUntil" class="form-control" required>
+                <span class="form-hint">End date of availability window.</span>
+                <span class="form-error">Specify Available Until date.</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Form Action Buttons -->
+          <div class="form-actions-bar">
+            <button type="button" class="btn-form-reset" id="resetOwnerForm">
+              Clear Form
+            </button>
+            <button type="submit" class="btn-form-submit" id="submitOwnerBtn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              REGISTER MY MACHINE
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Success Feedback Card (Displayed upon validation & submission) -->
+      <section class="success-card" id="ownerSuccessCard" aria-live="polite">
+        <div class="success-icon-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+        </div>
+        <h2 class="success-title">Machine Registered Successfully!</h2>
+        <div class="success-badge" id="ownerRefId">Listing Reference ID: #OWN-948123</div>
+        <p class="success-message">
+          Congratulations! Your machine listing has been recorded. It is now queued for local farmer discovery in your area. You will receive booking requests directly on your registered phone number.
+        </p>
+
+        <!-- Summary Data Table -->
+        <div class="success-summary-box">
+          <div class="summary-heading">Registered Machine Summary</div>
+          <div id="ownerSummaryContainer">
+            <!-- Dynamically populated via forms.js -->
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <button type="button" class="btn-form-submit" id="submitAnotherOwner" style="min-width: 220px;">
+            List Another Machine
+          </button>
+          <a href="index.html" class="btn-form-reset" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+            Return to Homepage
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       Footer Section (Identical to Homepage)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <!-- Department and College Info -->
+      <div class="footer-col-about">
+        <h4 class="footer-brand-title">AGRICULTURAL–RENTAL MACHINERY</h4>
+        <p class="footer-address">
+          K. J. Somaiya Institute of Technology is located at Somaiya Ayurvihar Complex, Eastern Express Highway, near Everard Nagar, Sion East, Mumbai, Maharashtra 400022.
+        </p>
+        <p class="footer-credits">Made by KJSIT-IT DEPARTMENT.</p>
+      </div>
+
+      <!-- Our Work Links -->
+      <div class="footer-col-work">
+        <h4 class="footer-col-title">Our Work</h4>
+        <ul class="footer-nav-list">
+          <li><a href="index.html#about" class="footer-link">About</a></li>
+          <li><a href="index.html#initiatives" class="footer-link">Initiatives</a></li>
+          <li><a href="index.html#howItWorks" class="footer-link">How It Works</a></li>
+        </ul>
+      </div>
+
+      <!-- Follow Social Links -->
+      <div class="footer-col-follow">
+        <h4 class="footer-col-title">Follow</h4>
+        <ul class="footer-nav-list">
+          <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-link">Twitter</a></li>
+          <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+          <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-link">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/forms.js"></script>
+</body>
+</html>

@@ -86,9 +86,10 @@
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
-  padding: 0.25rem 0.5rem;
+  padding: 0.3rem 0.6rem;
   border-radius: var(--radius-sm);
   transition: background-color var(--transition-fast), color var(--transition-fast);
+  position: relative;
 }
 
 .cart-btn:hover {
@@ -96,10 +97,56 @@
   color: var(--color-somaiya-red);
 }
 
+.cart-btn.active {
+  color: var(--color-somaiya-red);
+  font-weight: 700;
+}
+
 .cart-btn svg {
-  width: 19px;
-  height: 19px;
+  width: 20px;
+  height: 20px;
   fill: currentColor;
+}
+
+.cart-btn span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary-yellow);
+  color: #000000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 9999px;
+  line-height: 1;
+}
+
+.btn-form-cart-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  color: #111827;
+  border: 2px solid var(--color-primary-yellow);
+  font-family: var(--font-family-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-form-cart-action:hover {
+  background-color: var(--color-primary-yellow);
+  color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255, 191, 0, 0.35);
 }
 
 /* Primary "TAKE ACTION" Button in Header */

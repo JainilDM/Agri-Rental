@@ -213,13 +213,9 @@ function initActionHandlers() {
     btn.addEventListener('click', openLoginSignUpModal);
   });
 
-  // Cart Button
-  const cartBtn = document.getElementById('cartBtn');
-  if (cartBtn) {
-    cartBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      showToast('Your equipment rental cart is currently empty (0 items).');
-    });
+  // Cart Button initializes badge count via AgriCart; normal link navigation navigates to cart.html
+  if (window.AgriCart) {
+    window.AgriCart.init();
   }
 }
 

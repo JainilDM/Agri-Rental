@@ -4,6 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (window.AgriCart) window.AgriCart.init();
   initMobileNav();
   initAuthTabs();
   initRadioPills();
@@ -327,6 +328,22 @@ function initFarmerForm() {
       'Farmer Location': locationInput.value.trim()
     };
 
+    // Also register this machinery item in the rental cart
+    if (window.AgriCart) {
+      window.AgriCart.addItem({
+        name: specificMachineryInput.value.trim(),
+        category: categoryInput.options[categoryInput.selectedIndex].text,
+        price: Number(budgetInput.value),
+        duration: durationInput.value.trim(),
+        date: dateInput.value,
+        location: locationInput.value.trim(),
+        notes: document.getElementById('additionalRequirements')?.value.trim() || '',
+        farmerName: nameInput.value.trim(),
+        farmerPhone: phoneInput.value.trim(),
+        quantity: 1
+      });
+    }
+
     renderSummary('farmerSummaryContainer', summaryData);
     document.getElementById('farmerRefId').textContent = `Booking Request ID: #${refId}`;
 
@@ -334,6 +351,69 @@ function initFarmerForm() {
     successCard.classList.add('show');
     successCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+
+  // Dedicated "Add to Rental Cart" button
+  const addToCartBtn = document.getElementById('btnAddToCart');
+  if (addToCartBtn) {
+    addToCartBtn.addEventListener('click', () => {
+      const nameInput = document.getElementById('farmerName');
+      const phoneInput = document.getElementById('farmerPhone');
+      const locationInput = document.getElementById('farmerLocation');
+      const categoryInput = document.getElementById('machineryCategory');
+      const specificMachineryInput = document.getElementById('specificMachinery');
+      const dateInput = document.getElementById('requiredDate');
+      const durationInput = document.getElementById('rentalDuration');
+      const budgetInput = document.getElementById('maxBudget');
+
+      let isValid = true;
+
+      if (!specificMachineryInput.value.trim()) {
+        showError(specificMachineryInput, 'Specify the machinery or model needed to add to cart.');
+        isValid = false;
+      }
+      if (!categoryInput.value) {
+        showError(categoryInput, 'Please select a machinery category.');
+        isValid = false;
+      }
+      if (!budgetInput.value || Number(budgetInput.value) <= 0) {
+        showError(budgetInput, 'Enter your rental budget/price.');
+        isValid = false;
+      }
+      if (!durationInput.value.trim()) {
+        showError(durationInput, 'Specify rental duration.');
+        isValid = false;
+      }
+
+      if (!isValid) {
+        const firstInvalid = form.querySelector('.is-invalid');
+        if (firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstInvalid.focus();
+        }
+        return;
+      }
+
+      if (window.AgriCart) {
+        const item = {
+          name: specificMachineryInput.value.trim(),
+          category: categoryInput.options[categoryInput.selectedIndex].text,
+          price: Number(budgetInput.value),
+          duration: durationInput.value.trim(),
+          date: dateInput.value || new Date().toISOString().split('T')[0],
+          location: locationInput.value.trim() || 'Specified in Request',
+          notes: document.getElementById('additionalRequirements')?.value.trim() || '',
+          farmerName: nameInput.value.trim(),
+          farmerPhone: phoneInput.value.trim(),
+          quantity: 1
+        };
+
+        window.AgriCart.addItem(item);
+        window.AgriCart.showToast(
+          `✓ Added "${item.name}" to rental cart! <a href="cart.html" style="color: #FFBF00; text-decoration: underline; margin-left: 8px; font-weight: 700;">View Cart (${window.AgriCart.getCount()}) &rarr;</a>`
+        );
+      }
+    });
+  }
 
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {

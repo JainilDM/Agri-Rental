@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipment Rental Cart | Agricultural-Rental Machinery - Somaiya Vidyavihar</title>
+  <meta name="description" content="View and manage your selected agricultural machinery rental requests, verify durations and budgets, and submit booking requests to equipment owners.">
+  <meta name="keywords" content="Machinery Rental Cart, Farm Equipment Booking, Tractor Rental Cart, Agricultural Rental, Somaiya, KJSIT">
+
+  <!-- Google Fonts: Inter & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css?v=3.0">
+  <link rel="stylesheet" href="css/components.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/forms.css?v=3.0">
+  <link rel="stylesheet" href="css/cart.css?v=1.0">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       Header & Navigation Bar (Identical to Site Header)
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <!-- Institution Brand Logo -->
+      <a href="index.html" class="brand-logo-link" aria-label="Somaiya Vidyavihar Homepage">
+        <img src="assets/images/somaiya-logo.png" alt="Somaiya Vidyavihar - K. J. Somaiya Institute of Technology Logo" class="brand-logo">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <div class="nav-desktop">
+        <nav class="header-nav" aria-label="Primary Navigation">
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="index.html#howItWorks" class="nav-link">How It Works</a></li>
+            <li><a href="farmer.html" class="nav-link">Find Machinery</a></li>
+            <li><a href="owner.html" class="nav-link">List Machine</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li><a href="index.html#contact" class="nav-link">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <!-- Social Icons, Cart & Action CTA -->
+        <div class="header-actions">
+          <div class="social-links" aria-label="Social Media Links">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.356 5 15.627 5H18V0h-3.808C10.595 0 9 1.582 9 4.615V8z"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Active Cart Button -->
+          <a href="cart.html" class="cart-btn active" id="cartBtn" aria-label="View Cart (0 items)">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+            </svg>
+            <span>0</span>
+          </a>
+
+          <!-- Primary CTA Button -->
+          <a href="farmer.html" class="btn-take-action">FIND MACHINERY</a>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button type="button" class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+      </button>
+    </div>
+
+    <!-- Responsive Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="index.html#howItWorks" class="mobile-nav-link">How It Works</a></li>
+        <li><a href="farmer.html" class="mobile-nav-link">Find Machinery (For Farmers)</a></li>
+        <li><a href="owner.html" class="mobile-nav-link">List Machine (For Owners)</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About Us</a></li>
+        <li><a href="index.html#contact" class="mobile-nav-link">Contact Us</a></li>
+        <li><a href="cart.html" class="mobile-nav-link active">Rental Cart (<span class="mobile-cart-count">0</span>)</a></li>
+      </ul>
+      <div class="mobile-nav-actions">
+        <a href="farmer.html" class="btn-take-action" style="text-align: center; width: 100%;">FIND MACHINERY</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Page Banner Section
+       ========================================================================== -->
+  <section class="page-banner">
+    <div class="banner-inner">
+      <!-- Breadcrumb Navigation -->
+      <div class="page-nav-bar">
+        <nav aria-label="Breadcrumb">
+          <ul class="breadcrumb-list">
+            <li><a href="index.html" class="breadcrumb-link">Home</a></li>
+            <li class="breadcrumb-separator">/</li>
+            <li class="breadcrumb-current">Rental Cart</li>
+          </ul>
+        </nav>
+
+        <div class="page-quick-actions">
+          <a href="farmer.html" class="btn-nav-outline" id="btnMoreMachinery">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Add More Machinery
+          </a>
+          <a href="index.html" class="btn-nav-outline" id="btnBackHome">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+
+      <!-- Page Heading & Explanation -->
+      <div class="page-title-box">
+        <h1 class="page-title">EQUIPMENT RENTAL CART</h1>
+        <div class="page-title-underline" aria-hidden="true"></div>
+        <div class="page-explanation-card">
+          <p>
+            Review your selected agricultural machinery rental requests, verify rental durations and estimated budgets, and proceed to booking confirmation with verified local equipment owners.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Main Cart Section
+       ========================================================================== -->
+  <main class="cart-page-main">
+    <div class="cart-container">
+
+      <!-- State 1: Empty Cart -->
+      <section class="cart-empty-card" id="cartEmptyState" style="display: none;" aria-live="polite">
+        <div class="cart-empty-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+        </div>
+        <h2 class="cart-empty-title">Your Rental Cart is Empty</h2>
+        <p class="cart-empty-desc">
+          You have not added any machinery to your rental cart yet. Search our verified equipment directory or submit a tailored rental requirement to get started.
+        </p>
+
+        <div class="cart-empty-actions">
+          <a href="farmer.html" class="btn-take-action" style="padding: 0.85rem 1.8rem;">
+            🌾 FIND MACHINERY (FOR FARMERS)
+          </a>
+          <a href="index.html" class="btn-continue-renting" style="width: auto; padding: 0.85rem 1.5rem;">
+            Back to Homepage
+          </a>
+        </div>
+      </section>
+
+      <!-- State 2: Populated Cart (2-Column Grid) -->
+      <section class="cart-layout" id="cartLayout" style="display: none;">
+        <!-- Left: Selected Machinery Items -->
+        <div class="cart-items-card">
+          <div class="cart-items-header">
+            <h2 class="cart-items-title">
+              Selected Equipment
+              <span class="cart-count-badge" id="cartItemCount">0</span>
+            </h2>
+            <button type="button" class="btn-clear-cart" id="btnClearCart" title="Clear all items in cart">
+              <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 15px; height: 15px; fill: currentColor;"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+              Clear Cart
+            </button>
+          </div>
+
+          <!-- Dynamic Item List Container -->
+          <div id="cartItemsContainer">
+            <!-- Injected via js/cart-page.js -->
+          </div>
+        </div>
+
+        <!-- Right: Rental Order Summary Sidebar -->
+        <aside class="cart-summary-card" aria-label="Rental Order Summary">
+          <h3 class="cart-summary-title">Rental Order Summary</h3>
+
+          <div class="cart-summary-list">
+            <div class="cart-summary-row">
+              <span>Machinery Subtotal</span>
+              <strong id="cartSubtotal">₹ 0</strong>
+            </div>
+            <div class="cart-summary-row">
+              <span>Academic Platform Fee</span>
+              <span class="cart-summary-badge-free">FREE (₹ 0)</span>
+            </div>
+            <div class="cart-summary-row">
+              <span>Security Deposit</span>
+              <span style="font-size: 0.85rem; color: #64748b;">Pay Direct to Owner</span>
+            </div>
+
+            <div class="cart-summary-divider"></div>
+
+            <div class="cart-summary-total-row">
+              <span class="cart-summary-total-label">Total Rental Budget</span>
+              <span class="cart-summary-total-val" id="cartGrandTotal">₹ 0</span>
+            </div>
+          </div>
+
+          <div class="cart-summary-actions">
+            <button type="button" class="btn-cart-checkout" id="btnCheckout">
+              CONFIRM RENTAL REQUEST &rarr;
+            </button>
+            <a href="farmer.html" class="btn-continue-renting">
+              + Find More Machinery
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="cart-trust-box">
+            <div class="cart-trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              <span>Verified Local Machine Owners</span>
+            </div>
+            <div class="cart-trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <span>Transparent Rates &amp; Zero Hidden Fees</span>
+            </div>
+            <div class="cart-trust-item">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>Instant SMS Updates Upon Owner Acceptance</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- State 3: Checkout Success Screen (Displayed upon booking confirmation) -->
+      <section class="cart-checkout-success" id="checkoutSuccessCard" style="display: none;" aria-live="polite">
+        <div class="cart-empty-icon-wrap" style="background: #f0fdf4; border-color: #22c55e; color: #16a34a;" aria-hidden="true">
+          <svg viewBox="0 0 24 24" style="width: 44px; height: 44px; fill: currentColor;">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+        </div>
+        <h2 class="cart-empty-title">Rental Request Placed Successfully!</h2>
+        <div class="success-badge-id" id="successBookingRef">Booking Request ID: #RNT-581902</div>
+        <p class="cart-empty-desc">
+          Thank you! Your machinery rental request has been forwarded to verified equipment owners in your area. You will receive SMS alerts as owners confirm availability for your required dates.
+        </p>
+
+        <!-- Summary Container -->
+        <div id="successOrderDetails"></div>
+
+        <div class="cart-empty-actions">
+          <a href="farmer.html" class="btn-take-action" style="padding: 0.85rem 1.8rem;">
+            🌾 SUBMIT ANOTHER REQUIREMENT
+          </a>
+          <a href="index.html" class="btn-continue-renting" style="width: auto; padding: 0.85rem 1.5rem;">
+            Return to Homepage
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       Rental Request Checkout Modal
+       ========================================================================== -->
+  <div class="modal-overlay" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutModalTitle">
+    <div class="modal-card" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="checkoutModalTitle">Confirm Machinery Rental Request</h3>
+        <button type="button" class="modal-close-btn" id="closeCheckoutModal" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="color: #4b5563; font-size: 0.95rem; margin-bottom: 1rem;">
+          Please review your booking summary and confirm your contact information for the equipment owners.
+        </p>
+
+        <!-- Items Summary Inside Modal -->
+        <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 0.85rem 1rem; margin-bottom: 1.25rem;">
+          <div style="font-weight: 700; font-size: 0.85rem; color: #374151; margin-bottom: 0.5rem; text-transform: uppercase;">
+            Equipment in this Booking:
+          </div>
+          <div id="checkoutItemsSummary"></div>
+          <div style="border-top: 1px solid #d1d5db; margin-top: 0.75rem; padding-top: 0.5rem; display: flex; justify-content: space-between; font-weight: 700; color: #111827;">
+            <span>Estimated Total:</span>
+            <span id="checkoutTotalAmount" style="color: #b45309;">₹ 0</span>
+          </div>
+        </div>
+
+        <!-- Farmer Confirmation Form -->
+        <form id="checkoutForm">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="checkoutFarmerName" class="form-label">Farmer Full Name <span class="required-star">*</span></label>
+            <input type="text" id="checkoutFarmerName" class="form-control" placeholder="e.g. Ramesh Patel" required>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="checkoutFarmerPhone" class="form-label">Mobile Number (For SMS &amp; Owner Call) <span class="required-star">*</span></label>
+            <input type="tel" id="checkoutFarmerPhone" class="form-control" placeholder="e.g. 9876543210" maxlength="10" required>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem;">
+            <button type="button" class="btn-continue-renting" id="cancelCheckoutModal" style="width: auto; padding: 0.65rem 1.25rem;">
+              Cancel
+            </button>
+            <button type="submit" class="btn-take-action" style="padding: 0.65rem 1.5rem; font-size: 0.85rem;">
+              CONFIRM &amp; SEND REQUEST
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Site Footer (Identical to Homepage)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <!-- Department and College Info -->
+      <div class="footer-col-about">
+        <h4 class="footer-brand-title">AGRICULTURAL–RENTAL MACHINERY</h4>
+        <p class="footer-address">
+          K. J. Somaiya Institute of Technology is located at Somaiya Ayurvihar Complex, Eastern Express Highway, near Everard Nagar, Sion East, Mumbai, Maharashtra 400022.
+        </p>
+        <p class="footer-credits">Made by KJSIT-IT DEPARTMENT.</p>
+      </div>
+
+      <!-- About Us Links -->
+      <div class="footer-col-work">
+        <h4 class="footer-col-title">Our Work</h4>
+        <ul class="footer-nav-list">
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="index.html#howItWorks" class="footer-link">How It Works</a></li>
+          <li><a href="farmer.html" class="footer-link">Find Machinery</a></li>
+          <li><a href="owner.html" class="footer-link">List Machine</a></li>
+        </ul>
+      </div>
+
+      <!-- Follow Social Links -->
+      <div class="footer-col-follow">
+        <h4 class="footer-col-title">Follow</h4>
+        <ul class="footer-nav-list">
+          <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-link">Twitter</a></li>
+          <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a></li>
+          <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-link">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/cart.js"></script>
+  <script src="js/cart-page.js"></script>
+</body>
+</html>

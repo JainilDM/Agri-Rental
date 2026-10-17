@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Find Machinery for Farmers | Agricultural-Rental Machinery</title>
+  <title>Find Machinery for Renters | Agricultural-Rental Machinery</title>
   <meta name="description"
     content="Find and rent agricultural machinery such as tractors, harvesters, and tillers directly from verified equipment owners.">
   <meta name="keywords"
@@ -104,7 +104,7 @@
       <ul class="mobile-nav-list">
         <li><a href="index.html" class="mobile-nav-link">Home</a></li>
         <li><a href="index.html#howItWorks" class="mobile-nav-link">How It Works</a></li>
-        <li><a href="farmer.html" class="mobile-nav-link active">Find Machinery (For Farmers)</a></li>
+        <li><a href="farmer.html" class="mobile-nav-link active">Find Machinery (For Renters)</a></li>
         <li><a href="owner.html" class="mobile-nav-link">List Machine (For Owners)</a></li>
         <li><a href="about.html" class="mobile-nav-link">About Us</a></li>
         <li><a href="index.html#contact" class="mobile-nav-link">Contact Us</a></li>
@@ -127,7 +127,7 @@
           <ul class="breadcrumb-list">
             <li><a href="index.html" class="breadcrumb-link">Home</a></li>
             <li class="breadcrumb-separator">/</li>
-            <li class="breadcrumb-current">Find Machinery for Farmers</li>
+            <li class="breadcrumb-current">Find Machinery for Renters</li>
           </ul>
         </nav>
 
@@ -150,7 +150,7 @@
 
       <!-- Page Heading & Explanation -->
       <div class="page-title-box">
-        <h1 class="page-title">FIND MACHINERY FOR FARMERS</h1>
+        <h1 class="page-title">FIND MACHINERY FOR RENTERS</h1>
         <div class="page-title-underline" aria-hidden="true"></div>
         <div class="page-explanation-card">
           <p>
@@ -169,74 +169,137 @@
     <div class="form-container">
 
       <!-- Login / Register Section -->
-      <section class="auth-panel-card" aria-labelledby="farmerAuthTitle">
+      <section class="auth-panel-card" aria-labelledby="renterAuthTitle">
         <div class="auth-panel-header">
           <div class="auth-header-info">
             <span class="auth-header-icon" aria-hidden="true">🌾</span>
             <div class="auth-header-text">
-              <h3 id="farmerAuthTitle">Farmer Portal Access</h3>
-              <p>Already have a farmer account? Log in to auto-fill your details, or proceed directly with the booking
+              <h3 id="renterAuthTitle">Renter Portal Access</h3>
+              <p>Already have a renter account? Log in to auto-fill your details, or proceed directly with the booking
                 request.</p>
             </div>
           </div>
 
           <!-- Auth Mode Switcher -->
-          <div class="auth-tabs-group" role="tablist" aria-label="Farmer Authentication Mode">
-            <button type="button" class="auth-tab-btn active" data-tab="tabGuestRequest" role="tab"
-              aria-selected="true">
-              Booking Form
+          <div class="auth-tabs-group" role="tablist" aria-label="Renter Authentication Mode">
+            <button type="button" class="auth-tab-btn active" data-tab="tabFarmerLogin" role="tab" aria-selected="true">
+              Login
             </button>
-            <button type="button" class="auth-tab-btn" data-tab="tabFarmerLogin" role="tab" aria-selected="false">
-              Quick Login
+            <button type="button" class="auth-tab-btn" data-tab="tabFarmerSignup" role="tab" aria-selected="false">
+              Sign Up
             </button>
           </div>
         </div>
 
-        <!-- Quick Login Tab Content -->
-        <div class="auth-tab-content" id="tabFarmerLogin" style="display: none;">
-          <form id="quickLoginForm" class="auth-inline-form">
+        <!-- Login Tab Content -->
+        <div class="auth-tab-content" id="tabFarmerLogin" style="display: block;">
+          <form id="realLoginForm" class="auth-inline-form">
             <div class="form-group">
-              <label for="quickLoginId" class="form-label">Farmer Mobile or Email</label>
-              <input type="text" id="quickLoginId" class="form-control"
-                placeholder="e.g. 9876543210 or farmer@example.com" required>
+              <label for="loginEmail" class="form-label">Email Address</label>
+              <input type="email" id="loginEmail" class="form-control" placeholder="farmer@example.com" required>
             </div>
             <div class="form-group">
-              <label for="quickLoginPin" class="form-label">PIN / Password</label>
-              <input type="password" id="quickLoginPin" class="form-control" placeholder="••••••••" required>
+              <label for="loginPassword" class="form-label">Password</label>
+              <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
             </div>
             <button type="submit" class="btn-gps-action" style="padding: 0.75rem 1.5rem;">
               Sign In
             </button>
           </form>
-          <div id="quickLoginFeedback" class="auth-notice-box" style="margin-top: 0.75rem; display: none;"></div>
+          <div id="loginFeedback" class="auth-notice-box" style="margin-top: 0.75rem; display: none;"></div>
         </div>
 
-        <!-- Guest Notice Tab Content -->
-        <div class="auth-tab-content" id="tabGuestRequest" style="display: block;">
-          <div class="auth-notice-box">
-            <strong>Guest Mode:</strong> You can submit this machinery search request directly below. An account profile
-            will be created for you upon submission using your mobile number.
-          </div>
+        <!-- Sign Up Tab Content -->
+        <div class="auth-tab-content" id="tabFarmerSignup" style="display: none;">
+          <form id="realSignupForm" class="auth-inline-form" style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="form-group" style="margin:0;">
+              <label for="signupName" class="form-label">Full Name</label>
+              <input type="text" id="signupName" class="form-control" placeholder="e.g. Ramesh Patel" required>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label for="signupEmail" class="form-label">Email Address</label>
+              <input type="email" id="signupEmail" class="form-control" placeholder="farmer@example.com" required>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label for="signupPassword" class="form-label">Password (Min 8 chars)</label>
+              <input type="password" id="signupPassword" class="form-control" placeholder="••••••••" minlength="8" required>
+            </div>
+            <button type="submit" class="btn-form-submit" style="padding: 0.75rem 1.5rem; width: 100%;">
+              Create Account
+            </button>
+          </form>
+          <div id="signupFeedback" class="auth-notice-box" style="margin-top: 0.75rem; display: none;"></div>
         </div>
       </section>
 
-      <!-- Primary Farmer Machinery Request Form -->
-      <section class="main-form-card" id="farmerFormCard" aria-labelledby="formTitle">
+      <!-- Authenticated Renter Banner (Hidden initially) -->
+      <section class="auth-panel-card" id="renterAuthBanner" style="display: none; text-align: center; margin-bottom: 2rem;">
+        <h3 style="margin-top: 0;">Welcome to the Renter Portal</h3>
+        <p style="color: var(--color-text-muted); margin-bottom: 1rem;">You are securely authenticated.</p>
+        <button type="button" class="btn-form-reset" id="btnLogoutRenter" style="display: inline-block;">
+          Logout
+        </button>
+      </section>
+
+      <!-- Public Listings Display Section (Hidden initially) -->
+      <section class="main-form-card" id="listingsSection" aria-labelledby="listingsTitle" style="display: none; margin-bottom: 2rem;">
+        <div class="fieldset-legend">
+          <span class="legend-icon" aria-hidden="true">🚜</span>
+          <h2 class="legend-title" id="listingsTitle">Available Machinery</h2>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <input type="text" id="listingSearch" class="form-control" placeholder="Search by name, brand, or location..." style="flex: 1; min-width: 250px;">
+          <select id="listingCategoryFilter" class="form-control" style="width: auto; min-width: 200px;">
+            <option value="">All Categories</option>
+            <option value="tractors">Tractors</option>
+            <option value="harvesters">Combine Harvesters</option>
+            <option value="cultivators">Cultivators & Tillers</option>
+            <option value="sowing">Sowing & Seed Drills</option>
+            <option value="sprayers">Sprayers</option>
+            <option value="threshers">Threshers</option>
+            <option value="balers">Balers</option>
+            <option value="earthmovers">Earthmovers</option>
+            <option value="other">Other Implements</option>
+          </select>
+        </div>
+
+        <div id="listingsLoading" style="text-align: center; padding: 2rem; color: var(--color-text-light);">
+          Fetching available machinery...
+        </div>
+
+        <div id="listingsError" class="auth-notice-box" style="display: none; text-align: center; margin-bottom: 1rem; color: var(--color-text-light);">
+          <p id="listingsErrorMessage"></p>
+          <button type="button" id="retryListingsBtn" class="btn-form-submit" style="margin-top: 1rem;">Retry</button>
+        </div>
+
+        <div id="listingsEmpty" style="display: none; text-align: center; padding: 2rem; color: var(--color-text-light);">
+          No machinery found matching your criteria.
+        </div>
+
+        <div id="listingsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+          <!-- Machine cards will be dynamically injected here -->
+        </div>
+      </section>
+
+      <!-- Primary Farmer Machinery Request Form (Hidden initially) -->
+      <section class="main-form-card" id="farmerFormCard" aria-labelledby="formTitle" style="display: none;">
         <form id="farmerForm" novalidate>
+          <input type="hidden" id="selectedListingId" name="selectedListingId" value="">
 
           <!-- Fieldset 1: Farmer Contact Information -->
           <fieldset class="form-fieldset">
             <div class="fieldset-legend">
               <span class="legend-icon" aria-hidden="true">👤</span>
-              <h2 class="legend-title" id="formTitle">Farmer Information</h2>
+              <h2 class="legend-title" id="formTitle">Renter Information</h2>
               <span class="legend-subtitle">Fields marked with <span class="required-star">*</span> are required</span>
             </div>
 
             <div class="form-grid-2">
-              <!-- Farmer Name -->
+              <!-- Renter Name -->
               <div class="form-group">
                 <label for="farmerName" class="form-label">
-                  Farmer Name <span class="required-star">*</span>
+                  Renter Name <span class="required-star">*</span>
                 </label>
                 <input type="text" id="farmerName" name="farmerName" class="form-control"
                   placeholder="e.g. Ramesh Patel" required>
@@ -419,7 +482,7 @@
           </svg>
         </div>
         <h2 class="success-title">Machinery Search Request Submitted!</h2>
-        <div class="success-badge" id="farmerRefId">Booking Request ID: #FMR-728190</div>
+        <div class="success-badge" id="farmerRefId">Booking Request ID: #RNT-728190</div>
         <p class="success-message">
           Thank you! Your machinery requirement has been registered. Our system is matching your request with active
           equipment owners in your area. You will receive an SMS and notification once available machines are confirmed.
@@ -497,6 +560,7 @@
 
   <!-- Scripts -->
   <script src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
   <script src="js/forms.js"></script>
 </body>
 

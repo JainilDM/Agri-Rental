@@ -297,21 +297,71 @@ function openCheckoutModal() {
   // Confirm Booking Form Submit
   const checkoutForm = document.getElementById('checkoutForm');
   if (checkoutForm) {
-    checkoutForm.onsubmit = (e) => {
+    checkoutForm.onsubmit = async (e) => {
       e.preventDefault();
 
-      const farmerName = document.getElementById('checkoutFarmerName')?.value.trim() || 'Farmer Guest';
-      const farmerPhone = document.getElementById('checkoutFarmerPhone')?.value.trim() || 'Not specified';
-      const bookingRef = 'RNT-' + Math.floor(100000 + Math.random() * 900000);
+      const token = typeof window.getAuthToken === 'function' ? window.getAuthToken() : (localStorage.getItem('agri_auth_token') || null);
+      if (!token) {
+        alert('Please log in or register before confirming your rental request.');
+        if (typeof window.openLoginSignUpModal === 'function') {
+          closeModal();
+          window.openLoginSignUpModal(null, 'cart.html');
+        } else {
+          window.location.href = 'index.html';
+        }
+        return;
+      }
 
-      // Close modal
-      closeModal();
+      const farmerName = document.getElementById('checkoutFarmerName')?.value.trim() || 'Renter';
+      const farmerPhone = document.getElementById('checkoutFarmerPhone')?.value.trim() || '';
 
-      // Show in-page success confirmation
-      showCheckoutSuccess(bookingRef, farmerName, farmerPhone, items, subtotal);
+      const submitBtn = checkoutForm.querySelector('button[type="submit"]');
+      const origText = submitBtn ? submitBtn.innerHTML : 'Submit';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Submitting Request...';
+      }
 
-      // Clear the cart
-      window.AgriCart.clearCart();
+      try {
+        const response = await fetch('http://localhost:5000/api/rentals/request', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({
+            farmerName,
+            farmerPhone,
+            items,
+            maxBudget: subtotal
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          const bookingRef = data.bookingRef || ('RNT-' + Math.floor(100000 + Math.random() * 900000));
+
+          // Close modal
+          closeModal();
+
+          // Show in-page success confirmation
+          showCheckoutSuccess(bookingRef, farmerName, farmerPhone, items, subtotal);
+
+          // Clear the cart locally and on server
+          window.AgriCart.clearCart();
+        } else {
+          alert(`Failed to confirm booking: ${data.message || 'Server error'}`);
+        }
+      } catch (err) {
+        console.error('Cart Checkout Submission Error:', err);
+        alert('Network error. Please ensure the backend server is running and try again.');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = origText;
+        }
+      }
     };
   }
 }

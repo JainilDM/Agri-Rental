@@ -27,7 +27,7 @@
     },
 
     /**
-     * Save items to localStorage and notify UI components
+     * Save items to localStorage, synchronize with backend if logged in, and notify UI components
      * @param {Array} items
      */
     saveItems: function (items) {
@@ -40,6 +40,64 @@
       window.dispatchEvent(new CustomEvent('agri-cart-changed', {
         detail: { items: items, count: this.getCount(), total: this.getTotal() }
       }));
+
+      // Synchronize with MongoDB Atlas backend if user is authenticated
+      this.syncToServer(items);
+    },
+
+    /**
+     * Push current items to backend /api/cart
+     */
+    syncToServer: function (items) {
+      const token = typeof window.getAuthToken === 'function' ? window.getAuthToken() : (localStorage.getItem('agri_auth_token') || null);
+      if (!token) return;
+
+      fetch('http://localhost:5000/api/cart', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({ items: items || this.getItems() })
+      }).catch(function (err) {
+        console.warn('[AgriCart] Background server sync error:', err);
+      });
+    },
+
+    /**
+     * Pull cart from backend /api/cart and update local storage/UI
+     */
+    syncFromServer: async function () {
+      const token = typeof window.getAuthToken === 'function' ? window.getAuthToken() : (localStorage.getItem('agri_auth_token') || null);
+      if (!token) return;
+
+      try {
+        const res = await fetch('http://localhost:5000/api/cart', {
+          method: 'GET',
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data.items)) {
+            // If server has items, or if local is empty, update local
+            const localItems = this.getItems();
+            if (data.items.length > 0) {
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(data.items));
+              this.updateBadges();
+              window.dispatchEvent(new CustomEvent('agri-cart-changed', {
+                detail: { items: data.items, count: this.getCount(), total: this.getTotal() }
+              }));
+            } else if (localItems.length > 0) {
+              // Local has items but server is empty, push local to server
+              this.syncToServer(localItems);
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('[AgriCart] Server pull error:', err);
+      }
     },
 
     /**
@@ -64,12 +122,16 @@
         const currentQty = parseInt(items[existingIndex].quantity, 10) || 1;
         const addQty = parseInt(item.quantity, 10) || 1;
         items[existingIndex].quantity = currentQty + addQty;
+        if (!items[existingIndex].listingId && item.listingId) {
+          items[existingIndex].listingId = item.listingId;
+        }
       } else {
         if (!item.id) {
           item.id = 'cart_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
         }
         item.quantity = parseInt(item.quantity, 10) || 1;
         item.price = Number(item.price) || 0;
+        item.listingId = item.listingId || null;
         item.addedAt = item.addedAt || new Date().toISOString();
         items.push(item);
       }
@@ -213,6 +275,9 @@
      */
     init: function () {
       this.updateBadges();
+
+      // If user is authenticated, synchronize with backend database
+      this.syncFromServer();
 
       // Listen for changes from other tabs/windows
       window.addEventListener('storage', function (e) {

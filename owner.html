@@ -104,7 +104,7 @@
       <ul class="mobile-nav-list">
         <li><a href="index.html" class="mobile-nav-link">Home</a></li>
         <li><a href="index.html#howItWorks" class="mobile-nav-link">How It Works</a></li>
-        <li><a href="farmer.html" class="mobile-nav-link">Find Machinery (For Farmers)</a></li>
+        <li><a href="farmer.html" class="mobile-nav-link">Find Machinery (For Renters)</a></li>
         <li><a href="owner.html" class="mobile-nav-link active">List Machine (For Owners)</a></li>
         <li><a href="about.html" class="mobile-nav-link">About Us</a></li>
         <li><a href="index.html#contact" class="mobile-nav-link">Contact Us</a></li>
@@ -155,7 +155,7 @@
         <div class="page-explanation-card">
           <p>
             Monetize your idle tractors, combine harvesters, and agricultural equipment. Register your machinery, set
-            your custom rental rates and availability windows, and connect with trusted local farmers in your region.
+            your custom rental rates and availability windows, and connect with trusted local renters in your region.
           </p>
         </div>
       </div>
@@ -182,45 +182,172 @@
 
           <!-- Auth Mode Switcher -->
           <div class="auth-tabs-group" role="tablist" aria-label="Owner Authentication Mode">
-            <button type="button" class="auth-tab-btn active" data-tab="tabNewListing" role="tab" aria-selected="true">
-              Listing Form
-            </button>
-            <button type="button" class="auth-tab-btn" data-tab="tabOwnerLogin" role="tab" aria-selected="false">
+            <button type="button" class="auth-tab-btn active" data-tab="tabOwnerLogin" role="tab" aria-selected="true">
               Owner Login
+            </button>
+            <button type="button" class="auth-tab-btn" data-tab="tabOwnerSignup" role="tab" aria-selected="false">
+              Owner Sign Up
             </button>
           </div>
         </div>
 
-        <!-- Quick Login Tab Content -->
-        <div class="auth-tab-content" id="tabOwnerLogin" style="display: none;">
-          <form id="quickLoginForm" class="auth-inline-form">
+        <!-- Login Tab Content -->
+        <div class="auth-tab-content" id="tabOwnerLogin" style="display: block;">
+          <form id="realOwnerLoginForm" class="auth-inline-form">
             <div class="form-group">
-              <label for="quickLoginId" class="form-label">Owner Mobile or Email</label>
-              <input type="text" id="quickLoginId" class="form-control"
-                placeholder="e.g. 9820012345 or owner@example.com" required>
+              <label for="ownerLoginEmail" class="form-label">Email Address</label>
+              <input type="email" id="ownerLoginEmail" class="form-control" placeholder="owner@example.com" required>
             </div>
             <div class="form-group">
-              <label for="quickLoginPin" class="form-label">PIN / Password</label>
-              <input type="password" id="quickLoginPin" class="form-control" placeholder="••••••••" required>
+              <label for="ownerLoginPassword" class="form-label">Password</label>
+              <input type="password" id="ownerLoginPassword" class="form-control" placeholder="••••••••" required>
             </div>
             <button type="submit" class="btn-gps-action" style="padding: 0.75rem 1.5rem;">
               Sign In
             </button>
           </form>
-          <div id="quickLoginFeedback" class="auth-notice-box" style="margin-top: 0.75rem; display: none;"></div>
+          <div id="ownerLoginFeedback" class="auth-notice-box" style="margin-top: 0.75rem; display: none;"></div>
         </div>
 
-        <!-- Guest / Direct Listing Tab Content -->
-        <div class="auth-tab-content" id="tabNewListing" style="display: block;">
-          <div class="auth-notice-box">
-            <strong>Instant Listing:</strong> You can register your equipment immediately. Your machinery owner profile
-            will be linked to your contact number upon submission.
-          </div>
+        <!-- Sign Up Tab Content -->
+        <div class="auth-tab-content" id="tabOwnerSignup" style="display: none;">
+          <form id="realOwnerSignupForm" class="auth-inline-form" style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="form-group" style="margin:0;">
+              <label for="ownerSignupName" class="form-label">Full Name</label>
+              <input type="text" id="ownerSignupName" class="form-control" placeholder="e.g. Balwinder Singh" required>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label for="ownerSignupEmail" class="form-label">Email Address</label>
+              <input type="email" id="ownerSignupEmail" class="form-control" placeholder="owner@example.com" required>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label for="ownerSignupPassword" class="form-label">Password (Min 8 chars)</label>
+              <input type="password" id="ownerSignupPassword" class="form-control" placeholder="••••••••" minlength="8" required>
+            </div>
+            <button type="submit" class="btn-form-submit" style="padding: 0.75rem 1.5rem; width: 100%;">
+              Create Owner Account
+            </button>
+          </form>
+          <div id="ownerSignupFeedback" class="auth-notice-box" style="margin-top: 0.75rem; display: none;"></div>
         </div>
       </section>
 
-      <!-- Primary Machine Listing Form -->
-      <section class="main-form-card" id="ownerFormCard" aria-labelledby="ownerFormTitle">
+      <!-- Authenticated Owner Banner & Navigation Switcher (Hidden initially) -->
+      <section class="auth-panel-card" id="ownerAuthBanner" style="display: none; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.85rem;">
+            <span class="auth-header-icon" aria-hidden="true">🚜</span>
+            <div>
+              <h3 style="margin: 0; font-size: 1.2rem; font-weight: 700; color: #FFFFFF;">Equipment Owner Portal</h3>
+              <p style="margin: 0.2rem 0 0; font-size: 0.88rem; color: var(--color-text-muted);" id="ownerWelcomeMsg">You are securely logged in as a verified equipment owner.</p>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <button type="button" class="btn-form-reset" id="btnLogoutOwner" style="padding: 0.6rem 1.25rem; font-size: 0.85rem;">
+              Log Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Dashboard Navigation Switcher -->
+        <div class="auth-tabs-group" role="tablist" aria-label="Owner View Mode" style="margin-top: 1.5rem; justify-content: flex-start;">
+          <button type="button" class="auth-tab-btn active" id="btnTabMyListings" role="tab" aria-selected="true">
+            📋 My Machinery Listings
+          </button>
+          <button type="button" class="auth-tab-btn" id="btnTabRequests" role="tab" aria-selected="false">
+            📩 Incoming Rental Requests <span id="ownerRequestsBadge" style="display:none; background:#ef4444; color:#fff; font-size:0.75rem; padding:0.15rem 0.5rem; border-radius:10px; margin-left:0.35rem; font-weight:700;">0</span>
+          </button>
+          <button type="button" class="auth-tab-btn" id="btnTabNewListing" role="tab" aria-selected="false">
+            ➕ Register New Equipment
+          </button>
+        </div>
+      </section>
+
+      <!-- Owner Dashboard: My Machinery Listings Section (Hidden initially) -->
+      <section class="main-form-card" id="ownerDashboardSection" aria-labelledby="ownerDashboardTitle" style="display: none; margin-bottom: 2.5rem;">
+        <div class="fieldset-legend" style="margin-bottom: 1.5rem;">
+          <span class="legend-icon" aria-hidden="true">📋</span>
+          <h2 class="legend-title" id="ownerDashboardTitle">My Machinery Listings</h2>
+          <span class="legend-subtitle" id="ownerListingsCountBadge">Total Equipment: 0</span>
+        </div>
+
+        <!-- Feedback alert box -->
+        <div id="ownerDashboardFeedback" class="auth-notice-box" style="display: none; margin-bottom: 1.25rem;"></div>
+
+        <!-- Loading State -->
+        <div id="ownerListingsLoading" style="text-align: center; padding: 2.5rem 1rem; color: var(--color-text-muted);">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🚜</div>
+          Loading your registered machinery listings...
+        </div>
+
+        <!-- Error State -->
+        <div id="ownerListingsError" class="auth-notice-box" style="display: none; text-align: center; margin-bottom: 1.5rem; border-left-color: #ef4444;">
+          <p id="ownerListingsErrorMessage" style="margin: 0 0 0.85rem; color: #fca5a5;"></p>
+          <button type="button" id="btnRetryOwnerListings" class="btn-gps-action" style="padding: 0.5rem 1.25rem; margin: 0 auto;">
+            Retry Fetching
+          </button>
+        </div>
+
+        <!-- Empty State -->
+        <div id="ownerListingsEmpty" style="display: none; text-align: center; padding: 3rem 1.5rem; background: rgba(0, 0, 0, 0.25); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: var(--radius-sm);">
+          <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🌾</div>
+          <h3 style="color: #FFFFFF; font-size: 1.25rem; margin: 0 0 0.5rem;">No Machinery Listed Yet</h3>
+          <p style="color: var(--color-text-muted); max-width: 500px; margin: 0 auto 1.5rem; font-size: 0.95rem;">
+            You have not registered any equipment yet. Add your first tractor, harvester, or farm implement to start receiving rental requests from verified local farmers.
+          </p>
+          <button type="button" id="btnEmptyAddEquipment" class="btn-form-submit" style="min-width: 220px; padding: 0.85rem 1.75rem; margin: 0 auto;">
+            + Register New Equipment
+          </button>
+        </div>
+
+        <!-- Listings Grid Container -->
+        <div id="ownerListingsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.5rem;">
+          <!-- Injected dynamically via forms.js -->
+        </div>
+      </section>
+
+      <!-- Owner Dashboard: Incoming Rental Requests Section (Hidden initially) -->
+      <section class="main-form-card" id="ownerRequestsSection" aria-labelledby="ownerRequestsTitle" style="display: none; margin-bottom: 2.5rem;">
+        <div class="fieldset-legend" style="margin-bottom: 1.5rem;">
+          <span class="legend-icon" aria-hidden="true">📩</span>
+          <h2 class="legend-title" id="ownerRequestsTitle">Incoming Rental Requests</h2>
+          <span class="legend-subtitle" id="ownerRequestsCountBadge">Total Inquiries: 0</span>
+        </div>
+
+        <!-- Feedback alert box -->
+        <div id="ownerRequestsFeedback" class="auth-notice-box" style="display: none; margin-bottom: 1.25rem;"></div>
+
+        <!-- Loading State -->
+        <div id="ownerRequestsLoading" style="text-align: center; padding: 2.5rem 1rem; color: var(--color-text-muted);">
+          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⏳</div>
+          Loading incoming rental requests from farmers...
+        </div>
+
+        <!-- Error State -->
+        <div id="ownerRequestsError" class="auth-notice-box" style="display: none; text-align: center; margin-bottom: 1.5rem; border-left-color: #ef4444;">
+          <p id="ownerRequestsErrorMessage" style="margin: 0 0 0.85rem; color: #fca5a5;"></p>
+          <button type="button" id="btnRetryOwnerRequests" class="btn-gps-action" style="padding: 0.5rem 1.25rem; margin: 0 auto;">
+            Retry Fetching Requests
+          </button>
+        </div>
+
+        <!-- Empty State -->
+        <div id="ownerRequestsEmpty" style="display: none; text-align: center; padding: 3rem 1.5rem; background: rgba(0, 0, 0, 0.25); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: var(--radius-sm);">
+          <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">📭</div>
+          <h3 style="color: #FFFFFF; font-size: 1.25rem; margin: 0 0 0.5rem;">No Rental Requests Yet</h3>
+          <p style="color: var(--color-text-muted); max-width: 500px; margin: 0 auto; font-size: 0.95rem;">
+            You have not received any rental inquiries for your machinery yet. When farmers submit requests for your equipment, they will appear here for your review and approval.
+          </p>
+        </div>
+
+        <!-- Requests Grid Container -->
+        <div id="ownerRequestsGrid" style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <!-- Injected dynamically via forms.js -->
+        </div>
+      </section>
+
+      <!-- Primary Machine Listing Form (Hidden initially) -->
+      <section class="main-form-card" id="ownerFormCard" aria-labelledby="ownerFormTitle" style="display: none;">
         <form id="ownerForm" novalidate>
 
           <!-- Fieldset 1: Owner Contact Information -->
@@ -296,7 +423,7 @@
                 </label>
                 <input type="text" id="machineName" name="machineName" class="form-control"
                   placeholder="e.g. Mahindra 575 DI 45 HP Tractor with Rotary Tiller" required>
-                <span class="form-hint">A clear title that farmers will see in listings.</span>
+                <span class="form-hint">A clear title that renters will see in listings.</span>
                 <span class="form-error">Machine name is required.</span>
               </div>
 
@@ -350,7 +477,7 @@
                 <textarea id="machineDescription" name="machineDescription" class="form-control"
                   placeholder="Describe the machine's condition, horsepower, included accessories/implements, maintenance history, driver availability, fuel guidelines, and usage terms."
                   required></textarea>
-                <span class="form-hint">Provide full details to build trust with renting farmers.</span>
+                <span class="form-hint">Provide full details to build trust with renters.</span>
                 <span class="form-error">Please enter a description for the machine (at least 10 characters).</span>
               </div>
 
@@ -422,7 +549,7 @@
                 </label>
                 <input type="text" id="minRentalDuration" name="minRentalDuration" class="form-control"
                   placeholder="e.g. 1 Day (or 4 Hours)" required>
-                <span class="form-hint">Minimum time a farmer must rent this machine.</span>
+                <span class="form-hint">Minimum time a renter must rent this machine.</span>
                 <span class="form-error">Specify the minimum rental duration.</span>
               </div>
 
@@ -465,7 +592,7 @@
                   </button>
                 </div>
                 <span class="gps-feedback-msg" id="ownerGpsStatus"></span>
-                <span class="form-hint">Physical storage location where farmers can pick up or receive the
+                <span class="form-hint">Physical storage location where renters can pick up or receive the
                   machine.</span>
                 <span class="form-error">Machine location is required.</span>
               </div>
@@ -533,7 +660,7 @@
         <h2 class="success-title">Machine Registered Successfully!</h2>
         <div class="success-badge" id="ownerRefId">Listing Reference ID: #OWN-948123</div>
         <p class="success-message">
-          Congratulations! Your machine listing has been recorded. It is now queued for local farmer discovery in your
+          Congratulations! Your machine listing has been recorded. It is now queued for local renter discovery in your
           area. You will receive booking requests directly on your registered phone number.
         </p>
 
@@ -555,6 +682,197 @@
           </a>
         </div>
       </section>
+
+      <!-- Edit Machine Listing Modal -->
+      <div id="ownerEditModal" class="owner-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+        <div class="owner-modal-container">
+          <div class="owner-modal-header">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="font-size: 1.4rem;">✏️</span>
+              <h3 id="editModalTitle" style="margin: 0; color: #FFFFFF; font-family: var(--font-family-heading); font-size: 1.25rem;">
+                Edit Machinery Listing
+              </h3>
+            </div>
+            <button type="button" class="owner-modal-close" id="btnEditModalClose" aria-label="Close edit modal">&times;</button>
+          </div>
+
+          <form id="ownerEditForm" novalidate style="padding: 1.5rem 1.75rem;">
+            <input type="hidden" id="editListingId" name="editListingId">
+            <div id="editModalFeedback" class="auth-notice-box" style="display: none; margin-bottom: 1.25rem;"></div>
+
+            <div class="form-grid-2">
+              <!-- Machine Name -->
+              <div class="form-group form-col-full">
+                <label for="editMachineName" class="form-label">
+                  Machine Name / Title <span class="required-star">*</span>
+                </label>
+                <input type="text" id="editMachineName" name="machineName" class="form-control" required maxlength="100">
+                <span class="form-error">Machine name is required (max 100 chars).</span>
+              </div>
+
+              <!-- Machinery Category -->
+              <div class="form-group">
+                <label for="editCategory" class="form-label">
+                  Category <span class="required-star">*</span>
+                </label>
+                <select id="editCategory" name="ownerMachineryCategory" class="form-control" required>
+                  <option value="tractors">Tractor (Utility / Orchard / Heavy)</option>
+                  <option value="harvesters">Combine Harvester</option>
+                  <option value="cultivators">Cultivator / Rotavator / Power Tiller</option>
+                  <option value="sowing">Seed Drill / Planter</option>
+                  <option value="sprayers">Boom Sprayer / Tractor Mounted Sprayer</option>
+                  <option value="threshers">Multi-Crop Thresher</option>
+                  <option value="balers">Square / Round Straw Baler</option>
+                  <option value="earthmovers">Backhoe Loader / Excavator</option>
+                  <option value="other">Other Agricultural Machinery</option>
+                </select>
+                <span class="form-error">Please select a machinery category.</span>
+              </div>
+
+              <!-- Brand / Model -->
+              <div class="form-group">
+                <label for="editBrandModel" class="form-label">
+                  Brand / Model <span class="required-star">*</span>
+                </label>
+                <input type="text" id="editBrandModel" name="brandModel" class="form-control" required maxlength="100">
+                <span class="form-error">Brand and model is required.</span>
+              </div>
+
+              <!-- Manufacturing Year -->
+              <div class="form-group">
+                <label for="editMfgYear" class="form-label">
+                  Manufacturing Year <span class="required-star">*</span>
+                </label>
+                <input type="number" id="editMfgYear" name="manufacturingYear" class="form-control" min="1900" max="2027" required>
+                <span class="form-error">Valid manufacturing year required (1900-2027).</span>
+              </div>
+
+              <!-- Rental Price -->
+              <div class="form-group">
+                <label for="editRentalPrice" class="form-label">
+                  Rental Price (₹) <span class="required-star">*</span>
+                </label>
+                <input type="number" id="editRentalPrice" name="rentalPrice" class="form-control" min="0" max="1000000" step="25" required>
+                <span class="form-error">Valid rental price required (₹0 - ₹1,000,000).</span>
+              </div>
+
+              <!-- Price Unit -->
+              <div class="form-group">
+                <label for="editPriceUnit" class="form-label">
+                  Price Unit <span class="required-star">*</span>
+                </label>
+                <select id="editPriceUnit" name="priceUnit" class="form-control" required>
+                  <option value="Hour">Per Hour</option>
+                  <option value="Day">Per Day</option>
+                  <option value="Week">Per Week</option>
+                  <option value="Month">Per Month</option>
+                  <option value="Acre">Per Acre</option>
+                </select>
+              </div>
+
+              <!-- Availability Status -->
+              <div class="form-group">
+                <label for="editAvailabilityStatus" class="form-label">
+                  Availability Status <span class="required-star">*</span>
+                </label>
+                <select id="editAvailabilityStatus" name="availabilityStatus" class="form-control" required>
+                  <option value="immediate">Immediately Available</option>
+                  <option value="seasonal">Available for Upcoming Harvest / Sowing Season</option>
+                  <option value="weekdays">Weekdays Only</option>
+                  <option value="weekends">Weekends Only</option>
+                  <option value="custom">Custom Schedule</option>
+                </select>
+              </div>
+
+              <!-- Min Duration -->
+              <div class="form-group">
+                <label for="editMinDuration" class="form-label">
+                  Minimum Rental Duration <span class="required-star">*</span>
+                </label>
+                <input type="text" id="editMinDuration" name="minRentalDuration" class="form-control" required maxlength="100">
+                <span class="form-error">Minimum duration is required.</span>
+              </div>
+
+              <!-- Max Duration -->
+              <div class="form-group">
+                <label for="editMaxDuration" class="form-label">
+                  Maximum Rental Duration <span class="required-star">*</span>
+                </label>
+                <input type="text" id="editMaxDuration" name="maxRentalDuration" class="form-control" required maxlength="100">
+                <span class="form-error">Maximum duration is required.</span>
+              </div>
+
+              <!-- Machine Physical Location -->
+              <div class="form-group form-col-full">
+                <label for="editMachineLocation" class="form-label">
+                  Machine Physical Location <span class="required-star">*</span>
+                </label>
+                <input type="text" id="editMachineLocation" name="machineLocation" class="form-control" required maxlength="200">
+                <span class="form-error">Machine location is required (max 200 chars).</span>
+              </div>
+
+              <!-- Available From -->
+              <div class="form-group">
+                <label for="editAvailableFrom" class="form-label">
+                  Available From <span class="required-star">*</span>
+                </label>
+                <input type="date" id="editAvailableFrom" name="availableFrom" class="form-control" required>
+                <span class="form-error">Valid start date required.</span>
+              </div>
+
+              <!-- Available Until -->
+              <div class="form-group">
+                <label for="editAvailableUntil" class="form-label">
+                  Available Until <span class="required-star">*</span>
+                </label>
+                <input type="date" id="editAvailableUntil" name="availableUntil" class="form-control" required>
+                <span class="form-error">Valid end date required.</span>
+              </div>
+
+              <!-- Description -->
+              <div class="form-group form-col-full">
+                <label for="editDescription" class="form-label">
+                  Description <span class="required-star">*</span>
+                </label>
+                <textarea id="editDescription" name="machineDescription" class="form-control" rows="3" required minlength="10" maxlength="2000"></textarea>
+                <span class="form-error">Description must be between 10 and 2000 characters.</span>
+              </div>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+              <button type="button" class="btn-form-reset" id="btnCancelEdit" style="padding: 0.75rem 1.5rem;">
+                Cancel
+              </button>
+              <button type="submit" class="btn-form-submit" id="btnSaveEdit" style="min-width: 180px; padding: 0.75rem 1.75rem;">
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Delete Confirmation Modal -->
+      <div id="ownerDeleteModal" class="owner-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+        <div class="owner-modal-container" style="max-width: 480px; text-align: center; padding: 2rem 1.75rem;">
+          <div style="font-size: 2.75rem; margin-bottom: 0.75rem; color: #ef4444;">⚠️</div>
+          <h3 id="deleteModalTitle" style="color: #FFFFFF; font-family: var(--font-family-heading); font-size: 1.35rem; margin: 0 0 0.5rem;">
+            Delete Machinery Listing?
+          </h3>
+          <p id="deleteModalText" style="color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.5; margin: 0 0 1.5rem;">
+            Are you sure you want to permanently remove this machine listing? Farmers will no longer be able to discover or request it for rent.
+          </p>
+          <input type="hidden" id="deleteTargetListingId">
+          <div style="display: flex; justify-content: center; gap: 1rem;">
+            <button type="button" class="btn-form-reset" id="btnCancelDelete" style="padding: 0.75rem 1.5rem; min-width: 120px;">
+              Cancel
+            </button>
+            <button type="button" class="btn-gps-action" id="btnConfirmDelete" style="background-color: #ef4444; border-color: #dc2626; color: #FFFFFF; padding: 0.75rem 1.5rem; min-width: 140px; font-weight: 700;">
+              Yes, Delete
+            </button>
+          </div>
+        </div>
+      </div>
 
     </div>
   </main>
@@ -601,6 +919,7 @@
 
   <!-- Scripts -->
   <script src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
   <script src="js/forms.js"></script>
 </body>
 

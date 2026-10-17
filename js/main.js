@@ -46,17 +46,20 @@ function initMobileNav() {
 /**
  * Generic Modal Handler
  */
+export function closeModal() {
+  const modalOverlay = document.getElementById('appModal');
+  if (modalOverlay) {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
 function initModals() {
   const modalOverlay = document.getElementById('appModal');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
   const modalOkBtn = document.getElementById('modalOkBtn');
 
   if (!modalOverlay) return;
-
-  function closeModal() {
-    modalOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-  }
 
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
   if (modalOkBtn) modalOkBtn.addEventListener('click', closeModal);
@@ -86,9 +89,406 @@ export function openModal(title, contentHtml) {
 }
 
 /**
+ * Server-verified Session Checker
+ * Does not rely solely on localStorage; verifies token against backend.
+ */
+export async function verifyServerSession() {
+  const token = typeof window.getAuthToken === 'function'
+    ? window.getAuthToken()
+    : (localStorage.getItem('agri_auth_token') || localStorage.getItem('agri_owner_token') || localStorage.getItem('agri_farmer_token'));
+
+  if (!token) return false;
+
+  try {
+    const res = await fetch('http://localhost:5000/api/auth/verify', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (res.ok) {
+      return true;
+    } else {
+      if (typeof window.clearAuthTokens === 'function') {
+        window.clearAuthTokens();
+      } else {
+        localStorage.removeItem('agri_auth_token');
+        localStorage.removeItem('agri_owner_token');
+        localStorage.removeItem('agri_farmer_token');
+      }
+      return false;
+    }
+  } catch (err) {
+    console.warn('Session verification server check failed:', err);
+    return false;
+  }
+}
+
+/**
+ * Update Header and Mobile Button States Based on Authentication
+ */
+async function updateHeaderAuthState() {
+  const headerBtn = document.getElementById('headerActionBtn');
+  const mobileBtn = document.getElementById('mobileActionBtn');
+  if (!headerBtn && !mobileBtn) return;
+
+  const isAuthed = await verifyServerSession();
+  const label = isAuthed ? 'LOGOUT' : 'LOGIN / SIGN UP';
+
+  if (headerBtn) headerBtn.textContent = label;
+  if (mobileBtn) mobileBtn.textContent = label;
+}
+
+/**
+ * Open Authentication Modal (Sign In / Sign Up)
+ * Supports destination routing to farmer.html or owner.html
+ */
+export function openLoginSignUpModal(eOrDestination, explicitDestination) {
+  if (eOrDestination && typeof eOrDestination.preventDefault === 'function') {
+    eOrDestination.preventDefault();
+  }
+
+  let currentDestination = 'farmer.html';
+  if (typeof explicitDestination === 'string' && explicitDestination) {
+    currentDestination = explicitDestination;
+  } else if (typeof eOrDestination === 'string' && eOrDestination) {
+    currentDestination = eOrDestination;
+  } else if (eOrDestination && eOrDestination.currentTarget) {
+    const targetEl = eOrDestination.currentTarget;
+    const href = targetEl.getAttribute ? (targetEl.getAttribute('href') || '') : '';
+    if (targetEl.id === 'listMachineBtn' || targetEl.id === 'navListMachine' || targetEl.id === 'btnListMachine' || href.includes('owner.html')) {
+      currentDestination = 'owner.html';
+    } else {
+      currentDestination = 'farmer.html';
+    }
+  }
+
+  const isOwnerDest = currentDestination.includes('owner.html');
+
+  const contentHtml = `
+    <div class="auth-modal-wrapper" style="font-family: inherit;">
+      <!-- Destination Routing Indicator & Switcher -->
+      <div style="background: #f8fafc; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 1.25rem; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+        <div>
+          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #64748b; letter-spacing: 0.05em; display: block;">Destination Portal</span>
+          <span style="font-size: 0.9rem; font-weight: 600; color: #0f172a;" id="modalDestDisplay">
+            ${isOwnerDest ? '🚜 List Machine (Equipment Owner)' : '🌾 Find Machinery (Renter)'}
+          </span>
+        </div>
+        <div style="display: flex; gap: 0.35rem;" role="group" aria-label="Selected Portal Destination">
+          <button type="button" id="destToggleFarmer" class="btn-dest-toggle" style="padding: 0.35rem 0.75rem; font-size: 0.8rem; border-radius: 4px; border: 1px solid ${!isOwnerDest ? '#FFBF00' : '#cbd5e1'}; background: ${!isOwnerDest ? '#FFBF00' : '#ffffff'}; color: #0f172a; font-weight: 600; cursor: pointer;">
+            Renter
+          </button>
+          <button type="button" id="destToggleOwner" class="btn-dest-toggle" style="padding: 0.35rem 0.75rem; font-size: 0.8rem; border-radius: 4px; border: 1px solid ${isOwnerDest ? '#FFBF00' : '#cbd5e1'}; background: ${isOwnerDest ? '#FFBF00' : '#ffffff'}; color: #0f172a; font-weight: 600; cursor: pointer;">
+            Owner
+          </button>
+        </div>
+      </div>
+
+      <!-- Auth Mode Tabs (Sign In vs Sign Up) -->
+      <div style="display: flex; border-bottom: 2px solid #e2e8f0; margin-bottom: 1.25rem;" role="tablist">
+        <button type="button" id="tabBtnModalLogin" class="modal-auth-tab active" role="tab" aria-selected="true" style="flex: 1; padding: 0.75rem; background: none; border: none; border-bottom: 3px solid #FFBF00; font-weight: 700; font-size: 0.95rem; color: #0f172a; cursor: pointer;">
+          Sign In
+        </button>
+        <button type="button" id="tabBtnModalSignup" class="modal-auth-tab" role="tab" aria-selected="false" style="flex: 1; padding: 0.75rem; background: none; border: none; border-bottom: 3px solid transparent; font-weight: 600; font-size: 0.95rem; color: #64748b; cursor: pointer;">
+          Create Account
+        </button>
+      </div>
+
+      <!-- Sign In Form Panel -->
+      <div id="modalLoginPanel" role="tabpanel" style="display: block;">
+        <form id="modalAuthLoginForm" style="display: flex; flex-direction: column; gap: 0.9rem;">
+          <div>
+            <label for="modalLoginEmail" style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 0.35rem;">Email Address</label>
+            <input type="email" id="modalLoginEmail" class="form-control" placeholder="user@example.com" required autocomplete="email" style="width: 100%; box-sizing: border-box; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem;">
+          </div>
+          <div>
+            <label for="modalLoginPassword" style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 0.35rem;">Password</label>
+            <input type="password" id="modalLoginPassword" class="form-control" placeholder="••••••••" required autocomplete="current-password" style="width: 100%; box-sizing: border-box; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem;">
+          </div>
+          <button type="submit" id="modalLoginSubmitBtn" class="btn-take-action" style="width: 100%; padding: 0.75rem; font-size: 0.95rem; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; margin-top: 0.25rem;">
+            Sign In &amp; Continue
+          </button>
+        </form>
+        <div id="modalLoginFeedback" style="margin-top: 0.85rem; padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.88rem; display: none;" role="alert"></div>
+      </div>
+
+      <!-- Create Account Form Panel -->
+      <div id="modalSignupPanel" role="tabpanel" style="display: none;">
+        <form id="modalAuthSignupForm" style="display: flex; flex-direction: column; gap: 0.9rem;">
+          <div>
+            <label for="modalSignupName" style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 0.35rem;">Full Name</label>
+            <input type="text" id="modalSignupName" class="form-control" placeholder="e.g. Ramesh Patel" required style="width: 100%; box-sizing: border-box; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem;">
+          </div>
+          <div>
+            <label for="modalSignupEmail" style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 0.35rem;">Email Address</label>
+            <input type="email" id="modalSignupEmail" class="form-control" placeholder="user@example.com" required autocomplete="email" style="width: 100%; box-sizing: border-box; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem;">
+          </div>
+          <div>
+            <label for="modalSignupPassword" style="display: block; font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 0.35rem;">Password (Min 8 characters)</label>
+            <input type="password" id="modalSignupPassword" class="form-control" placeholder="••••••••" minlength="8" required autocomplete="new-password" style="width: 100%; box-sizing: border-box; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem;">
+          </div>
+          <button type="submit" id="modalSignupSubmitBtn" class="btn-take-action" style="width: 100%; padding: 0.75rem; font-size: 0.95rem; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; margin-top: 0.25rem;">
+            Create Account &amp; Continue
+          </button>
+        </form>
+        <div id="modalSignupFeedback" style="margin-top: 0.85rem; padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.88rem; display: none;" role="alert"></div>
+      </div>
+
+      <p style="margin: 1.25rem 0 0; font-size: 0.82rem; color: #64748b; text-align: center; line-height: 1.4;">
+        One account gives you access to both <strong>Renting</strong> and <strong>Listing</strong> agricultural machinery.
+      </p>
+    </div>
+  `;
+
+  openModal('Sign In or Register', contentHtml);
+
+  // Bind interactive elements inside the opened modal
+  const tabLogin = document.getElementById('tabBtnModalLogin');
+  const tabSignup = document.getElementById('tabBtnModalSignup');
+  const panelLogin = document.getElementById('modalLoginPanel');
+  const panelSignup = document.getElementById('modalSignupPanel');
+  const destDisplay = document.getElementById('modalDestDisplay');
+  const toggleFarmer = document.getElementById('destToggleFarmer');
+  const toggleOwner = document.getElementById('destToggleOwner');
+
+  function updateDestUI(dest) {
+    currentDestination = dest;
+    const isOwner = dest.includes('owner.html');
+    if (destDisplay) {
+      destDisplay.textContent = isOwner
+        ? '🚜 List Machine (Equipment Owner)'
+        : '🌾 Find Machinery (Renter)';
+    }
+    if (toggleFarmer) {
+      toggleFarmer.style.background = !isOwner ? '#FFBF00' : '#ffffff';
+      toggleFarmer.style.borderColor = !isOwner ? '#FFBF00' : '#cbd5e1';
+    }
+    if (toggleOwner) {
+      toggleOwner.style.background = isOwner ? '#FFBF00' : '#ffffff';
+      toggleOwner.style.borderColor = isOwner ? '#FFBF00' : '#cbd5e1';
+    }
+  }
+
+  if (toggleFarmer) {
+    toggleFarmer.addEventListener('click', () => updateDestUI('farmer.html'));
+  }
+  if (toggleOwner) {
+    toggleOwner.addEventListener('click', () => updateDestUI('owner.html'));
+  }
+
+  if (tabLogin && tabSignup && panelLogin && panelSignup) {
+    tabLogin.addEventListener('click', () => {
+      tabLogin.classList.add('active');
+      tabLogin.style.borderBottomColor = '#FFBF00';
+      tabLogin.style.color = '#0f172a';
+      tabLogin.setAttribute('aria-selected', 'true');
+
+      tabSignup.classList.remove('active');
+      tabSignup.style.borderBottomColor = 'transparent';
+      tabSignup.style.color = '#64748b';
+      tabSignup.setAttribute('aria-selected', 'false');
+
+      panelLogin.style.display = 'block';
+      panelSignup.style.display = 'none';
+    });
+
+    tabSignup.addEventListener('click', () => {
+      tabSignup.classList.add('active');
+      tabSignup.style.borderBottomColor = '#FFBF00';
+      tabSignup.style.color = '#0f172a';
+      tabSignup.setAttribute('aria-selected', 'true');
+
+      tabLogin.classList.remove('active');
+      tabLogin.style.borderBottomColor = 'transparent';
+      tabLogin.style.color = '#64748b';
+      tabLogin.setAttribute('aria-selected', 'false');
+
+      panelSignup.style.display = 'block';
+      panelLogin.style.display = 'none';
+    });
+  }
+
+  // Handle Login Form Submit
+  const loginForm = document.getElementById('modalAuthLoginForm');
+  if (loginForm) {
+    loginForm.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const email = document.getElementById('modalLoginEmail').value.trim();
+      const password = document.getElementById('modalLoginPassword').value;
+      const feedback = document.getElementById('modalLoginFeedback');
+      const submitBtn = document.getElementById('modalLoginSubmitBtn');
+
+      if (!email || !password) {
+        feedback.style.display = 'block';
+        feedback.style.background = '#fee2e2';
+        feedback.style.color = '#b91c1c';
+        feedback.textContent = 'Please enter both email and password.';
+        return;
+      }
+
+      feedback.style.display = 'block';
+      feedback.style.background = '#e0f2fe';
+      feedback.style.color = '#0284c7';
+      feedback.textContent = 'Signing in securely...';
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.token) {
+          if (typeof window.setAuthToken === 'function') {
+            window.setAuthToken(data.token);
+          } else {
+            localStorage.setItem('agri_auth_token', data.token);
+            localStorage.setItem('agri_owner_token', data.token);
+            localStorage.setItem('agri_farmer_token', data.token);
+          }
+          feedback.style.background = '#dcfce7';
+          feedback.style.color = '#15803d';
+          const userName = (data.user && data.user.name) || (data.farmer && data.farmer.name) || 'User';
+          feedback.textContent = `✓ Welcome, ${userName}! Opening portal...`;
+
+          updateHeaderAuthState();
+
+          setTimeout(() => {
+            window.location.href = currentDestination;
+          }, 700);
+        } else {
+          feedback.style.background = '#fee2e2';
+          feedback.style.color = '#b91c1c';
+          feedback.textContent = data.message || 'Login failed. Please check your credentials.';
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      } catch (err) {
+        feedback.style.background = '#fee2e2';
+        feedback.style.color = '#b91c1c';
+        feedback.textContent = 'Network error. Please ensure the backend server is running.';
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  }
+
+  // Handle Signup Form Submit
+  const signupForm = document.getElementById('modalAuthSignupForm');
+  if (signupForm) {
+    signupForm.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const name = document.getElementById('modalSignupName').value.trim();
+      const email = document.getElementById('modalSignupEmail').value.trim();
+      const password = document.getElementById('modalSignupPassword').value;
+      const feedback = document.getElementById('modalSignupFeedback');
+      const submitBtn = document.getElementById('modalSignupSubmitBtn');
+
+      if (!name || !email || !password) {
+        feedback.style.display = 'block';
+        feedback.style.background = '#fee2e2';
+        feedback.style.color = '#b91c1c';
+        feedback.textContent = 'All fields are required.';
+        return;
+      }
+      if (password.length < 8) {
+        feedback.style.display = 'block';
+        feedback.style.background = '#fee2e2';
+        feedback.style.color = '#b91c1c';
+        feedback.textContent = 'Password must be at least 8 characters long.';
+        return;
+      }
+
+      feedback.style.display = 'block';
+      feedback.style.background = '#e0f2fe';
+      feedback.style.color = '#0284c7';
+      feedback.textContent = 'Creating account...';
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password })
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          feedback.style.background = '#e0f2fe';
+          feedback.style.color = '#0284c7';
+          feedback.textContent = 'Account created! Authenticating...';
+
+          try {
+            const loginRes = await fetch('http://localhost:5000/api/auth/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password })
+            });
+            const loginData = await loginRes.json();
+
+            if (loginRes.ok && loginData.token) {
+              if (typeof window.setAuthToken === 'function') {
+                window.setAuthToken(loginData.token);
+              } else {
+                localStorage.setItem('agri_auth_token', loginData.token);
+                localStorage.setItem('agri_owner_token', loginData.token);
+                localStorage.setItem('agri_farmer_token', loginData.token);
+              }
+              feedback.style.background = '#dcfce7';
+              feedback.style.color = '#15803d';
+              feedback.textContent = `✓ Account ready! Opening portal...`;
+
+              updateHeaderAuthState();
+
+              setTimeout(() => {
+                window.location.href = currentDestination;
+              }, 700);
+            } else {
+              feedback.style.background = '#dcfce7';
+              feedback.style.color = '#15803d';
+              feedback.textContent = '✓ Account created successfully! Please sign in.';
+              if (tabLogin) tabLogin.click();
+              if (submitBtn) submitBtn.disabled = false;
+            }
+          } catch (loginErr) {
+            feedback.style.background = '#dcfce7';
+            feedback.style.color = '#15803d';
+            feedback.textContent = '✓ Account created successfully! Please sign in.';
+            if (tabLogin) tabLogin.click();
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        } else {
+          feedback.style.background = '#fee2e2';
+          feedback.style.color = '#b91c1c';
+          feedback.textContent = data.message || 'Signup failed. Please try again.';
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      } catch (err) {
+        feedback.style.background = '#fee2e2';
+        feedback.style.color = '#b91c1c';
+        feedback.textContent = 'Network error. Please ensure the backend server is running.';
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  }
+}
+
+// Make accessible on window object
+if (typeof window !== 'undefined') {
+  window.openLoginSignUpModal = openLoginSignUpModal;
+  window.closeModal = closeModal;
+  window.verifyServerSession = verifyServerSession;
+}
+
+/**
  * Interactive Action Handlers for Buttons & Demo Video Links
  */
 function initActionHandlers() {
+  // Update header buttons on load
+  updateHeaderAuthState();
+
   // Demo Video 1 (Renting)
   const rentVideoBtn = document.getElementById('demoVideoRentBtn');
   if (rentVideoBtn) {
@@ -108,7 +508,7 @@ function initActionHandlers() {
             </p>
           </div>
           <p style="font-size: 0.95rem; color: #374151;">
-            Demonstrates how farmers register, browse local tractors & harvesters, and place booking requests.
+            Demonstrates how renters register, browse local tractors & harvesters, and place booking requests.
           </p>
         </div>
         `
@@ -143,77 +543,98 @@ function initActionHandlers() {
     });
   }
 
-  // Find Machinery & List Machine Buttons - let normal link navigation proceed to farmer.html and owner.html
-  // (Listeners removed so browser navigates smoothly to the target pages)
-
-  // Login / Sign Up Action Buttons (Desktop & Mobile)
+  // Top-right and Mobile "LOGIN / SIGN UP" Action Buttons
   const loginActionBtns = [
     document.getElementById('headerActionBtn'),
     document.getElementById('mobileActionBtn')
   ].filter(Boolean);
 
-  function openLoginSignUpModal(e) {
-    if (e) e.preventDefault();
-    openModal(
-      'Login / Sign Up to Agri-Rental',
-      `
-      <div style="padding: 0.5rem 0;">
-        <p style="color: #4b5563; font-size: 0.95rem; margin-bottom: 1.5rem; text-align: center;">
-          Choose your account portal to sign in or create an account for agricultural machinery rentals.
-        </p>
+  loginActionBtns.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const isAuthed = await verifyServerSession();
+      if (isAuthed) {
+        // User is logged in: clicking LOGOUT logs out
+        if (typeof window.clearAuthTokens === 'function') {
+          window.clearAuthTokens();
+        } else {
+          localStorage.removeItem('agri_auth_token');
+          localStorage.removeItem('agri_owner_token');
+          localStorage.removeItem('agri_farmer_token');
+        }
+        loginActionBtns.forEach(b => { b.textContent = 'LOGIN / SIGN UP'; });
+        showToast('You have logged out successfully.');
+      } else {
+        openLoginSignUpModal(e, 'farmer.html');
+      }
+    });
+  });
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-          <!-- Farmer Portal Card -->
-          <a href="farmer.html" style="display: flex; flex-direction: column; align-items: center; padding: 1.25rem; border: 2px solid #e5e7eb; border-radius: 8px; text-decoration: none; text-align: center; background: #fafafa; transition: border-color 0.2s, transform 0.2s;">
-            <span style="font-size: 2.25rem; margin-bottom: 0.5rem;">🌾</span>
-            <strong style="color: #111827; font-size: 1.05rem; margin-bottom: 0.25rem;">Farmer Portal</strong>
-            <span style="color: #6b7280; font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.3;">Rent tractors, tillers, and harvesters for your farm</span>
-            <span style="margin-top: auto; font-size: 0.85rem; font-weight: 700; color: #b45309; text-transform: uppercase;">Go to Farmer Portal &rarr;</span>
-          </a>
+  // Find Machinery buttons & nav links (Renter portal)
+  const findMachineryElements = [
+    document.getElementById('findMachineryBtn'),
+    document.getElementById('navFindMachinery'),
+    document.getElementById('btnFindMachinery')
+  ].filter(Boolean);
 
-          <!-- Owner Portal Card -->
-          <a href="owner.html" style="display: flex; flex-direction: column; align-items: center; padding: 1.25rem; border: 2px solid #e5e7eb; border-radius: 8px; text-decoration: none; text-align: center; background: #fafafa; transition: border-color 0.2s, transform 0.2s;">
-            <span style="font-size: 2.25rem; margin-bottom: 0.5rem;">🚜</span>
-            <strong style="color: #111827; font-size: 1.05rem; margin-bottom: 0.25rem;">Machine Owner</strong>
-            <span style="color: #6b7280; font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.3;">List your equipment and manage rental requests</span>
-            <span style="margin-top: auto; font-size: 0.85rem; font-weight: 700; color: #b45309; text-transform: uppercase;">Go to Owner Portal &rarr;</span>
-          </a>
-        </div>
+  findMachineryElements.forEach(el => {
+    el.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const isAuthed = await verifyServerSession();
+      if (isAuthed) {
+        window.location.href = 'farmer.html';
+      } else {
+        openLoginSignUpModal(e, 'farmer.html');
+      }
+    });
+  });
 
-        <!-- Quick Sign In Helper -->
-        <div style="background: #f9fafb; border-radius: 8px; padding: 1rem 1.25rem; border: 1px solid #e5e7eb;">
-          <h4 style="color: #1f2937; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">Quick Sign In (Demo)</h4>
-          <form id="modalQuickLoginForm" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <input type="text" id="modalLoginId" placeholder="Mobile number or Email" required style="flex: 1; min-width: 180px; padding: 0.6rem 0.85rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.875rem;">
-            <button type="submit" class="btn-take-action" style="padding: 0.6rem 1.25rem; font-size: 0.8rem; cursor: pointer;">SIGN IN</button>
-          </form>
-          <div id="modalLoginFeedback" style="display: none; margin-top: 0.5rem; font-size: 0.85rem; color: #16a34a; font-weight: 600;"></div>
-        </div>
-      </div>
-      `
-    );
+  // List Machine buttons & nav links (Owner portal)
+  const listMachineElements = [
+    document.getElementById('listMachineBtn'),
+    document.getElementById('navListMachine'),
+    document.getElementById('btnListMachine')
+  ].filter(Boolean);
 
-    const modalForm = document.getElementById('modalQuickLoginForm');
-    if (modalForm) {
-      modalForm.addEventListener('submit', (ev) => {
-        ev.preventDefault();
-        const idInput = document.getElementById('modalLoginId');
-        const feedback = document.getElementById('modalLoginFeedback');
-        if (idInput && feedback && idInput.value.trim()) {
-          const userVal = idInput.value.trim();
-          feedback.textContent = `✓ Signed in as ${userVal} (Active Demo Session)`;
-          feedback.style.display = 'block';
-          showToast(`Signed in successfully as ${userVal}`);
+  listMachineElements.forEach(el => {
+    el.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const isAuthed = await verifyServerSession();
+      if (isAuthed) {
+        window.location.href = 'owner.html';
+      } else {
+        openLoginSignUpModal(e, 'owner.html');
+      }
+    });
+  });
+
+  // Mobile navigation drawer links to portals
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  mobileNavLinks.forEach(link => {
+    const href = link.getAttribute('href') || '';
+    if (href.includes('farmer.html') || href.includes('owner.html')) {
+      link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const drawer = document.getElementById('mobileNavDrawer');
+        const toggleBtn = document.getElementById('menuToggleBtn');
+        if (drawer) drawer.classList.remove('open');
+        if (toggleBtn) {
+          toggleBtn.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        const targetPortal = href.includes('owner.html') ? 'owner.html' : 'farmer.html';
+        const isAuthed = await verifyServerSession();
+        if (isAuthed) {
+          window.location.href = targetPortal;
+        } else {
+          openLoginSignUpModal(e, targetPortal);
         }
       });
     }
-  }
-
-  loginActionBtns.forEach(btn => {
-    btn.addEventListener('click', openLoginSignUpModal);
   });
 
-  // Cart Button initializes badge count via AgriCart; normal link navigation navigates to cart.html
+  // Cart Button initializes badge count via AgriCart
   if (window.AgriCart) {
     window.AgriCart.init();
   }
